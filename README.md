@@ -1,1 +1,2 @@
-# BuyAll: An Android Ecommerce app - Mobile App Development Project
+# BuyAll: An Android E-commerce app
+## Mobile App Development Project
