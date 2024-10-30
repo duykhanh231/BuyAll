@@ -71,13 +71,6 @@ public class FullCommentActivity extends AppCompatActivity {
         });
 
         productId = getIntent().getStringExtra("PRODUCT_ID");
-        ProductDetailComment productDetailComment1 = new ProductDetailComment("1","1","1" ,"User 1", R.drawable.user,"Sản phẩm rất tuyệt vời, không có gì để chê",R.drawable.ddr4_1,R.drawable.ddr4_2,5);
-        ProductDetailComment productDetailComment2 = new ProductDetailComment("1","2","2" ,"User 2", R.drawable.user,"Sản phẩm khá tốt, tối khá hài lòng",R.drawable.ddr4_2,0,4);
-        ProductDetailComment productDetailComment3 = new ProductDetailComment("2","3","3" ,"User 3", R.drawable.user,"Sản phẩm cũng tạm ổn, shop giao hàng chậm",R.drawable.ddr5_1,R.drawable.ddr5_2,3);
-        ProductDetailComment productDetailComment4 = new ProductDetailComment("2","4","4" ,"User 4", R.drawable.user,"Sản phẩm rất mạnh mẽ tôi rất thích, 2 thanh thừa sức chiến Wukong ",R.drawable.ddr5_3,R.drawable.ddr5_4,5);
-        ProductDetailComment productDetailComment5 = new ProductDetailComment("3","3","5" ,"User 5", R.drawable.user,"Sản phẩm cũng hoạt động ổn định, giao hàng sớm hơn dự kiến",R.drawable.ddr3_1,R.drawable.ddr3_2,5);
-        ProductDetailComment productDetailComment6 = new ProductDetailComment("3","4","6" ,"User 6", R.drawable.user,"Sản phẩm hoat động không ổn định lỗi màn hình xanh",R.drawable.ddr3_3,0,1);
-
 
         rcvFULLCOMMENT = findViewById(R.id.rcvFULLCOMMENT);
         MyListProductDetailComment = new ArrayList<>();

@@ -18,16 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ProductViewHolder> {
-    private List<Product_List> productListList;
+    private List<Product_List> productList;
     private Context context;
 
     public ProductListAdapter(Context context, List<Product_List> productList) {
         this.context = context;
-        this.productListList = productList;
+        this.productList = productList;
     }
 
     public ProductListAdapter(List<Product_List> productList) {
-        this.productListList = productList;
+        this.productList = productList;
     }
 
     @NonNull
@@ -39,7 +39,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        Product_List productList = productListList.get(position);
+        Product_List productList = this.productList.get(position);
         if (productList == null){
             return;
         }
@@ -72,8 +72,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public int getItemCount() {
-        if (productListList != null){
-            return productListList.size();
+        if (productList != null){
+            return productList.size();
         }
         return 0;
     }
