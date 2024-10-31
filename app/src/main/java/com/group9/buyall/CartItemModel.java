@@ -7,15 +7,7 @@ public class CartItemModel {
 
     private int type;
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    /// cart item
+    ///cart item
     private int productImage;
     private String productTitle;
     private int freeCoupons;
@@ -100,55 +92,4 @@ public class CartItemModel {
     public void setOffersApplied(int offersApplied) {
         this.offersApplied = offersApplied;
     }
-
-    ///cart item
-
-    /// cart total amount
-
-    private int totalItems;
-    private String totalAmount;
-    private String deliveryPrice;
-    private String savedAMount;
-
-    public CartItemModel(int type, int totalItems, String totalAmount, String deliveryPrice, String savedAMount) {
-        this.type = type;
-        this.totalItems = totalItems;
-        this.totalAmount = totalAmount;
-        this.deliveryPrice = deliveryPrice;
-        this.savedAMount = savedAMount;
-    }
-
-    public int getTotalItems() {
-        return totalItems;
-    }
-
-    public void setTotalItems(int totalItems) {
-        this.totalItems = totalItems;
-    }
-
-    public String getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(String totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public String getDeliveryPrice() {
-        return deliveryPrice;
-    }
-
-    public void setDeliveryPrice(String deliveryPrice) {
-        this.deliveryPrice = deliveryPrice;
-    }
-
-    public String getSavedAMount() {
-        return savedAMount;
-    }
-
-    public void setSavedAMount(String savedAMount) {
-        this.savedAMount = savedAMount;
-    }
-
-    ///cart total amount
 }
