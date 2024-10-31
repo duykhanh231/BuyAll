@@ -8,18 +8,17 @@ public class Product_Detail {
     private String location;
     private float averageRating;
     private int imageUrl;
-    private String productDescription; // Thuộc tính mô tả sản phẩm
 
     public Product_Detail(String productId, String productName, double price,
-                          String shippingMethod, String location, float averageRating, int imageUrl, String productDescription) {
+                          String shippingMethod, String location, float averageRating, int imageUrl) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
         this.shippingMethod = shippingMethod;
         this.location = location;
         this.averageRating = averageRating;
-        this.imageUrl = imageUrl; // Khởi tạo thuộc tính URL
-        this.productDescription = productDescription; // Khởi tạo thuộc tính mô tả sản phẩm
+        this.imageUrl = imageUrl;
+
     }
 
     // Getters và Setters cho từng thuộc tính
@@ -79,11 +78,4 @@ public class Product_Detail {
         this.imageUrl = imageUrl;
     }
 
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
-    }
 }
