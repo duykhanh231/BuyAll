@@ -51,7 +51,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:textSize="24sp"
-        android:textColor="@color/dark_blue"/>
+        android:textColor="@color/ColorPrimary"/>
 
     <EditText
         android:id="@+id/username"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Remember Password"
-            android:textColor="@color/dark_blue" />
+            android:textColor="@color/ColorPrimary" />
 
         <TextView
             android:id="@+id/forgot_password"
@@ -105,10 +105,10 @@
         android:layout_width="276dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/dark_blue"
+        android:backgroundTint="@color/ColorPrimary"
         android:padding="12dp"
         android:text="LOGIN"
-        android:textColor="@color/white" />
+        android:textColor="@color/ColorAccent" />
 
     <TextView
         android:id="@+id/sign_up_text"

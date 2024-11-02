@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
+    android:background="@color/ColorAccent"
     android:elevation="3dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -24,7 +24,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="iPhone 16 Pro 128GB (VN/A)"
-        android:textColor="@color/black"
+        android:textColor="@color/Black"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/product_image"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
         app:layout_constraintStart_toEndOf="@+id/product_image"
         app:layout_constraintTop_toBottomOf="@+id/product_title"
         app:srcCompat="@drawable/coupon"
-        app:tint="@color/Orange" />
+        app:tint="@color/Chocolate" />
 
     <TextView
         android:id="@+id/tv_free_coupon"
@@ -45,7 +45,7 @@
         android:layout_height="19dp"
         android:layout_marginStart="4dp"
         android:text="free 2 coupons"
-        android:textColor="@color/Orange"
+        android:textColor="@color/Chocolate"
         app:layout_constraintStart_toEndOf="@+id/free_coupon_icon"
         app:layout_constraintTop_toBottomOf="@+id/product_title" />
 
@@ -56,7 +56,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="16.000.000 VND"
-        android:textColor="@color/black"
+        android:textColor="@color/Black"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="Offers applied"
-        android:textColor="@color/LimeGreen"
+        android:textColor="@color/ForestGreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_price" />
 
@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="Coupons applied"
-        android:textColor="@color/Orange"
+        android:textColor="@color/Chocolate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/offers_applied" />
 
@@ -112,7 +112,7 @@
         android:drawablePadding="8dp"
         android:padding="3dp"
         android:text="Qty: 1"
-        android:textColor="@color/black"
+        android:textColor="@color/Black"
         app:layout_constraintStart_toEndOf="@+id/product_image"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="96dp" />
@@ -121,7 +121,7 @@
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/DarkBlue"
+        android:background="@color/ColorPrimary"
         android:gravity="right"
         android:orientation="horizontal"
         android:padding="16dp"
@@ -136,15 +136,14 @@
             android:layout_weight="1"
             android:text="Redeem coupon to get more discounts"
             android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:textColor="@color/ColorAccent" />
 
         <Button
             android:id="@+id/coupon_redemption_btn"
-            android:layout_width="99dp"
-            android:layout_height="35dp"
-            android:background="@drawable/border_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Redeem"
-            android:textColor="@color/white"
+            android:textColor="@color/ColorAccent"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -153,7 +152,7 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:orientation="horizontal"
-        android:background="@color/white"
+        android:background="@color/ColorAccent"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
