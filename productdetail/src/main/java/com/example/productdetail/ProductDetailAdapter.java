@@ -82,7 +82,11 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
     private void bindProductDetail(ProductDetailViewHolder holder) {
         Product_Detail productDetail = productDetails.get(0);
         holder.tvProductName.setText(productDetail.getProductName());
-        holder.tvProductPrice.setText(String.valueOf(productDetail.getPrice()));
+
+        double price = productDetail.getPrice();
+        String formattedPrice = String.format("đ %,.0f", price);
+
+        holder.tvProductPrice.setText(formattedPrice);
         holder.ivProductImage.setImageResource(productDetail.getImageUrl());
         holder.tvRATE.setText(String.valueOf(productDetail.getAverageRating()));
         holder.tvSHIPINGANDLOCATION.setText(String.format("%s %s | %s %s",
