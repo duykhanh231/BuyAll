@@ -1,4 +1,4 @@
-package com.example.productdetail;
+package com.group9.buyall;
 
 import android.view.LayoutInflater;
 import android.view.View;

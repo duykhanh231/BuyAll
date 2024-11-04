@@ -1,4 +1,4 @@
-package com.example.productdetail;
+package com.group9.buyall;
 
 import android.content.Context;
 import android.content.Intent;

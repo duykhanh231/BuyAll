@@ -1,4 +1,4 @@
-package com.example.productdetail;
+package com.group9.buyall;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;

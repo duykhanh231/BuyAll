@@ -1,4 +1,4 @@
-package com.example.productdetail;
+package com.group9.buyall;
 
 import java.util.ArrayList;
 import java.util.List;
