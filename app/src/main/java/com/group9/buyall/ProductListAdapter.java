@@ -25,11 +25,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         this.context = context;
         this.productList = productList;
     }
-
-    public ProductListAdapter(List<Product_List> productList) {
-        this.productList = productList;
-    }
-
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
