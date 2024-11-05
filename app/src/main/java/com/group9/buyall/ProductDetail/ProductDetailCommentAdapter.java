@@ -1,4 +1,4 @@
-package com.group9.buyall;
+package com.group9.buyall.ProductDetail;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.group9.buyall.R;
 
 import java.util.List;
 

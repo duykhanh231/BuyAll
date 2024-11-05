@@ -1,4 +1,4 @@
-package com.group9.buyall;
+package com.group9.buyall.ProductDetail;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.group9.buyall.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.group9.buyall;
+package com.group9.buyall.ProductList;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.group9.buyall.ProductDetail.ProductDetail;
+import com.group9.buyall.R;
 
 import java.util.List;
 

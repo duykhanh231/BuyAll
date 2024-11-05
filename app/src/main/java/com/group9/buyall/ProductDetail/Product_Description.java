@@ -1,4 +1,4 @@
-package com.group9.buyall;
+package com.group9.buyall.ProductDetail;
 
 public class Product_Description {
     private String productId;

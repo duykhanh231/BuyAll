@@ -22,16 +22,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FullCommentActivity"
+            android:name=".ProductDetail.FullCommentActivity"
             android:exported="true"></activity>
         <activity
-            android:name=".ProductDetail"
+            android:name=".ProductDetail.ProductDetail"
             android:exported="true"></activity>
         <activity
-            android:name=".ProductList"
+            android:name=".ProductList.ProductList"
             android:exported="true"></activity>
-
-
     </application>
 
 </manifest>

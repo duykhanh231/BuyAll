@@ -1,4 +1,4 @@
-package com.group9.buyall;
+package com.group9.buyall.ProductList;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -18,6 +18,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.group9.buyall.R;
 
 import java.util.ArrayList;
 import java.util.List;
