@@ -5,6 +5,27 @@
     <color name="Red">#FF0000</color>
     <color name="Chocolate">#D2691E</color>
     <color name="ForestGreen">#228B22</color>
+    <color name="LightSeaGreen">#20B2AA</color>
+    <color name="DodgerBlue">#1E90FF</color>
+    <color name="MidnightBlue">#191970</color>
+    <color name="Aqua">#00FFFF</color>
+    <color name="Cyan">#00FFFF</color>
+    <color name="SpringGreen">#00FF7F</color>
+    <color name="Lime">#00FF00</color>
+    <color name="MediumSpringGreen">#00FA9A</color>
+    <color name="DarkTurquoise">#00CED1</color>
+    <color name="DeepSkyBlue">#00BFFF</color>
+    <color name="DarkCyan">#008B8B</color>
+    <color name="Teal">#008080</color>
+    <color name="Green">#008000</color>
+    <color name="DarkGreen">#006400</color>
+    <color name="Blue">#0000FF</color>
+    <color name="MediumBlue">#0000CD</color>
+    <color name="DarkBlue">#3A5A99</color>
+    <color name="Navy">#000080</color>
+    <color name="black">#000000</color>
+    <color name="dark_blue">#3A5A99</color>
+    <color name="link_blue">#0066CC</color>
+    <color name="gray">#808080</color>
     <color name="Black">#000000</color>
-
 </resources>
