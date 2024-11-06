@@ -6,7 +6,7 @@
     android:padding="16dp"
     android:id="@+id/SigIn"
     android:gravity="center"
-    android:background="@color/white">
+    android:background="@color/ColorAccent">
 
     <LinearLayout
         android:layout_width="wrap_content"
