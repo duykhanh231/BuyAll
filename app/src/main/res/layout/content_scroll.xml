@@ -23,15 +23,6 @@
         app:layout_constraintStart_toStartOf="@id/headerlayoutscroll"
         android:text="Bộ lọc tìm kiếm"
         android:textSize="30sp" />
-    <ImageButton
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:id="@+id/Closefilterbtn"
-        app:layout_constraintStart_toStartOf="@id/headerlayoutscroll"
-        app:layout_constraintTop_toTopOf="@id/headerlayoutscroll"
-        android:src="@drawable/crossx"
-        android:contentDescription="Close"
-        />
     <LinearLayout
         android:id="@+id/footerlayoutscroll"
         android:layout_width="match_parent"

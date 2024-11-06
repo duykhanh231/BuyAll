@@ -28,7 +28,7 @@ public class ProductList extends AppCompatActivity {
     private RecyclerView rcvProduct;
     private List<Product_List> listProductList;
     private ProductListAdapter productListAdapter;
-    private FrameLayout rightFrame;
+    private FrameLayout rightFrame,dimOverlay;
     private ViewFlipper vfADS;
     private TextView tvLienQuan, tvMoiNhat, tvBanChay, tvGia;
     private TextView tvscrollTPHCM, tvscrollHANOI, tvscrollHUE, tvscrollDANANG;
@@ -62,11 +62,10 @@ public class ProductList extends AppCompatActivity {
         listProductList.add(productList3);
 
 
-
+        dimOverlay = findViewById(R.id.dim_overlay);
         rightFrame = findViewById(R.id.right_frame);
 
         ImageButton filterButton = findViewById(R.id.filter);
-        ImageButton Closefilterbtn = findViewById(R.id.Closefilterbtn);
 
         Button Xacnhanfilterbtn = findViewById(R.id.btnscrollXACNHAN);
         Button Xaclaplaifilterbtn = findViewById(R.id.btnscrollXACLAPLAI);
@@ -144,6 +143,14 @@ public class ProductList extends AppCompatActivity {
         vfADS.setFlipInterval(3500);
         vfADS.startFlipping();
 
+        dimOverlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rightFrame.setVisibility(View.GONE);
+                dimOverlay.setVisibility(View.GONE); // Ẩn lớp phủ khi nhấn ra ngoài
+            }
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -156,16 +163,11 @@ public class ProductList extends AppCompatActivity {
                 onFilterButtonClick();
             }
         });
-        Closefilterbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rightFrame.setVisibility(View.GONE);
-            }
-        });
         Xacnhanfilterbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rightFrame.setVisibility(View.GONE);
+                dimOverlay.setVisibility(View.GONE);
             }
         });
         Xaclaplaifilterbtn.setOnClickListener(new View.OnClickListener() {
@@ -325,8 +327,10 @@ public class ProductList extends AppCompatActivity {
     private void onFilterButtonClick() {
         if (rightFrame.getVisibility() == View.GONE) {
             rightFrame.setVisibility(View.VISIBLE);
+            dimOverlay.setVisibility(View.VISIBLE);
         } else {
             rightFrame.setVisibility(View.GONE);
+            dimOverlay.setVisibility(View.GONE);
         }
     }
 }
