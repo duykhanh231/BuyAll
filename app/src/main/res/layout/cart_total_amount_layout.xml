@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/ColorAccent"
     android:elevation="3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/ColorAccent"
         android:elevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Price (2 items) "
-            android:textColor="@color/black"
+            android:textColor="@color/Black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -56,7 +56,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="Delivery"
-            android:textColor="@color/black"
+            android:textColor="@color/Black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/total_items" />
 
@@ -67,7 +67,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="18.349.000 VND"
-            android:textColor="@color/black"
+            android:textColor="@color/Black"
             app:layout_constraintEnd_toEndOf="@+id/divider"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -99,7 +99,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="Total amount"
-            android:textColor="@color/black"
+            android:textColor="@color/Black"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
@@ -111,7 +111,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="18.349.000 VND"
-            android:textColor="@color/black"
+            android:textColor="@color/Black"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
