@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="Xem Tất Cả >"
+        android:text="View all >"
         android:textColor="#FF6347"
         android:textStyle="bold"
         />

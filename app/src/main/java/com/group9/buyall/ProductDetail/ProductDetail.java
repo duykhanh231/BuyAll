@@ -39,9 +39,9 @@ public class ProductDetail extends AppCompatActivity {
         ProductDescriptionStack = new ArrayList<>();
         MyListProductDetailComment = new ArrayList<>();
 
-        Product_Detail product_detail1 = new Product_Detail("1","Ram Laptop 8GB DDR4 3200MHz", 400000, "Nhanh","TPHCM",(float) 4.5,R.drawable.ddr4);
-        Product_Detail product_detail2 = new Product_Detail("2","Ram Laptop 8GB DDR5 4800MHz", 560000, "Hỏa Tốc","TPHCM",(float) 4,R.drawable.ddr5);
-        Product_Detail product_detail3 = new Product_Detail("3","Ram Laptop 8GB DDR3 1600MHz", 150000, "Hỏa Tốc","Đà Nẵng",(float) 3,R.drawable.ddr3);
+        Product_Detail product_detail1 = new Product_Detail("1","Ram Laptop 8GB DDR4 3200MHz", 400000, "Standard","HCMC",(float) 4.5,R.drawable.ddr4);
+        Product_Detail product_detail2 = new Product_Detail("2","Ram Laptop 8GB DDR5 4800MHz", 560000, "Instant","HCMC",(float) 4,R.drawable.ddr5);
+        Product_Detail product_detail3 = new Product_Detail("3","Ram Laptop 8GB DDR3 1600MHz", 150000, "Standard","Da Nang",(float) 3,R.drawable.ddr3);
 
         Product_Description product_description1 = new Product_Description("1","RAM DDR4 16GB 3200MHz là sự lựa chọn hoàn hảo cho những người dùng đòi hỏi hiệu suất cao trong các tác vụ nặng như gaming, chỉnh sửa video, và thiết kế đồ họa. Với tốc độ truyền tải dữ liệu nhanh hơn 50% so với DDR3, RAM DDR4 giúp hệ thống của bạn hoạt động mượt mà và tiết kiệm năng lượng hơn. Nâng cấp lên RAM DDR4 giúp bạn tối ưu hóa hiệu suất và trải nghiệm người dùng.");
         Product_Description product_description2 = new Product_Description("2", "RAM DDR5 32GB 4800MHz đem lại hiệu suất vượt trội cho các hệ thống máy tính thế hệ mới. Với băng thông cao hơn và khả năng xử lý nhiều dữ liệu hơn, DDR5 giúp tăng tốc độ load game và cải thiện thời gian phản hồi trong các ứng dụng đòi hỏi tài nguyên lớn. Đây là sự lựa chọn tối ưu cho các game thủ chuyên nghiệp và các nhà phát triển nội dung, đảm bảo mọi tác vụ diễn ra một cách mượt mà và hiệu quả.");
