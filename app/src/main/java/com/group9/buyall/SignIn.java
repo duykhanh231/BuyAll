@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.view.View;
+import android.widget.Button;
 
 public class SignIn extends AppCompatActivity {
 
@@ -39,6 +41,15 @@ public class SignIn extends AppCompatActivity {
             Log.d("SignInMainActivity", "Sign up text clicked");
             Intent intent = new Intent(SignIn.this, SignUp.class);
             startActivity(intent);
+        });
+
+        Button logInButton = findViewById(R.id.login_button);
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignIn.this, HomePageActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }

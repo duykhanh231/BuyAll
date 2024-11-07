@@ -58,7 +58,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/ColorPrimary"
-            android:text="Check Out"
+            android:text="Buy now"
             android:textColor="@color/ColorAccent"
             android:textSize="16sp"
             android:textStyle="bold" />
