@@ -42,8 +42,8 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
             return VIEW_TYPE_PRODUCT_DETAIL; // Thông tin sản phẩm
         } else if (position <= commentsList.size()) {
             return VIEW_TYPE_COMMENT; // Bình luận
-        } else if (position == commentsList.size() + 1) {
-            return VIEW_TYPE_LISTENER_TEXT; // TextView với listener
+        } else if (!commentsList.isEmpty() && position == commentsList.size() + 1) {
+            return VIEW_TYPE_LISTENER_TEXT; // TextView với listener (chỉ khi có bình luận)
         } else {
             return VIEW_TYPE_DESCRIPTION; // Mô tả sản phẩm
         }
@@ -108,14 +108,19 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     private void bindListenerText(ListenerTextViewHolder holder) {
-        holder.tvListenerText.setOnClickListener(v -> {
-            if (!productDetails.isEmpty()) {
-                String productId = productDetails.get(0).getProductId();
-                Intent intent = new Intent(context, FullCommentActivity.class);
-                intent.putExtra("PRODUCT_ID", productId);
-                context.startActivity(intent);
-            }
-        });
+        if (commentsList.isEmpty()) {
+            holder.tvListenerText.setVisibility(View.GONE); // Ẩn TextView nếu không có bình luận
+        } else {
+            holder.tvListenerText.setVisibility(View.VISIBLE); // Hiện TextView nếu có bình luận
+            holder.tvListenerText.setOnClickListener(v -> {
+                if (!productDetails.isEmpty()) {
+                    String productId = productDetails.get(0).getProductId();
+                    Intent intent = new Intent(context, FullCommentActivity.class);
+                    intent.putExtra("PRODUCT_ID", productId);
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 
     private void bindProductDescription(ProductDescriptionViewHolder holder) {
@@ -125,7 +130,8 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemCount() {
-        return 1 + commentsList.size() + 1 + 1; // 1 cho sản phẩm chi tiết + số lượng bình luận + 1 cho TextView + 1 cho mô tả
+        int listenerTextCount = commentsList.isEmpty() ? 0 : 1; // 0 nếu không có bình luận, 1 nếu có
+        return 1 + commentsList.size() + listenerTextCount + 1; // 1 cho chi tiết sản phẩm, số bình luận, TextView (nếu có), và mô tả sản phẩm
     }
 
     // ViewHolder cho thông tin sản phẩm
@@ -175,7 +181,6 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
     // ViewHolder cho mô tả sản phẩm
     static class ProductDescriptionViewHolder extends RecyclerView.ViewHolder {
         TextView tvProductDescription;
-
         public ProductDescriptionViewHolder(View itemView) {
             super(itemView);
             tvProductDescription = itemView.findViewById(R.id.tvProductDESCRIPTION);

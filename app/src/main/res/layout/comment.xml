@@ -58,12 +58,16 @@
             android:id="@+id/ivCOMMENTIMAGE1"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:scaleType="fitXY"/>
         <ImageView
             android:id="@+id/ivCOMMENTIMAGE2"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:scaleType="fitXY"/>
 
 
     </LinearLayout>

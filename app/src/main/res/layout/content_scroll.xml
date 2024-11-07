@@ -22,16 +22,10 @@
         app:layout_constraintBottom_toBottomOf="@id/headerlayoutscroll"
         app:layout_constraintStart_toStartOf="@id/headerlayoutscroll"
         android:text="Bộ lọc tìm kiếm"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:layout_margin="5dp"
         android:textSize="30sp" />
-    <ImageButton
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:id="@+id/Closefilterbtn"
-        app:layout_constraintStart_toStartOf="@id/headerlayoutscroll"
-        app:layout_constraintTop_toTopOf="@id/headerlayoutscroll"
-        android:src="@drawable/crossx"
-        android:contentDescription="Close"
-        />
     <LinearLayout
         android:id="@+id/footerlayoutscroll"
         android:layout_width="match_parent"
@@ -88,6 +82,7 @@
                     android:text="Nơi bán"
                     android:layout_marginLeft="5dp"
                     android:textSize="25sp"
+                    android:textColor="#000000"
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
 
@@ -159,6 +154,7 @@
                     android:layout_height="wrap_content"
                     android:text="Đơn vị vận chuyển"
                     android:layout_marginLeft="5dp"
+                    android:textColor="#000000"
                     android:textSize="25sp"
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
@@ -217,6 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Khoảng Giá (đ)"
+                    android:textColor="#000000"
                     android:layout_marginLeft="5dp"
                     android:textSize="25sp"
                     android:layout_marginTop="10dp"/>
@@ -313,6 +310,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Đánh Giá"
+                    android:textColor="#000000"
                     android:layout_marginLeft="5dp"
                     android:textSize="25sp"
                     android:layout_marginTop="10dp"/>
@@ -392,6 +390,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dịch Vụ và Khuyến Mãi  "
+                    android:textColor="#000000"
                     android:layout_marginLeft="5dp"
                     android:textSize="25sp"
                     android:layout_marginTop="10dp"/>
@@ -461,6 +460,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Loại Shop  "
+                    android:textColor="#000000"
                     android:layout_marginLeft="5dp"
                     android:textSize="25sp"
                     android:layout_marginTop="10dp"/>

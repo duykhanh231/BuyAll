@@ -62,30 +62,42 @@
         android:background="#FFFFFF"
         android:contentDescription="FilterProduct"
         />
+    <LinearLayout
+        android:id="@+id/vienbaoview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/arrow"
+        android:background="#D3D3D3"
+        app:layout_constraintBottom_toTopOf="@+id/layout1"
+        android:orientation="horizontal"
+        />
     <ViewFlipper
         android:id="@+id/vfads"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
+        android:layout_margin="7dp"
         app:layout_constraintTop_toBottomOf="@id/filter"
         app:layout_constraintBottom_toTopOf="@id/layout1">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pc1" />
+            android:layout_height="match_parent"
+            android:src="@drawable/pc1"
+            android:scaleType="fitXY"/>
 
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pc2" />
+            android:layout_height="match_parent"
+            android:src="@drawable/pc2"
+            android:scaleType="fitXY"/>
 
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/meme" />
+            android:layout_height="match_parent"
+            android:src="@drawable/meme"
+            android:scaleType="fitXY"/>
 
     </ViewFlipper>
 
@@ -96,6 +108,7 @@
         android:orientation="horizontal"
         android:showDividers="middle"
         android:divider="@drawable/divider"
+        app:layout_constraintTop_toBottomOf="@+id/vienbaoview"
         app:layout_constraintBottom_toBottomOf="@id/headerlayout"
         android:dividerPadding="7dp">
         <TextView
@@ -159,6 +172,12 @@
         android:layout_marginTop="8dp"
         android:background="#D3D3D3"
         />
+    <FrameLayout
+        android:id="@+id/dim_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+    android:visibility="gone" />
     <FrameLayout
         android:id="@+id/right_frame"
         android:layout_width="0dp"

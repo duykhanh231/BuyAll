@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <solid android:color="#FFFFE0"/> <!-- Màu nền của TextView -->
+    <solid android:color="#FFFFFF"/> <!-- Màu nền của TextView -->
     <stroke
         android:width="2dp"
-    android:color="#FFC107"/>
+        android:color="#FF6347"/>
     <corners android:radius="3dp"/>
 </shape>
