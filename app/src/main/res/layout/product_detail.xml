@@ -7,8 +7,8 @@
         android:id="@+id/ivPRODUCTIMAGE"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="centerCrop"
         android:layout_gravity="center"
+        android:scaleType="fitXY"
         />
     <LinearLayout
         android:layout_width="match_parent"
