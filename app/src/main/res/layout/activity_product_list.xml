@@ -119,7 +119,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="21sp"
-            android:text="Liên quan"
+            android:text="Relevance"
             android:id="@+id/tvLienQuan"
             />
 
@@ -129,7 +129,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="21sp"
-            android:text="Mới nhất"
+            android:text="Latest"
             android:id="@+id/tvMoiNhat"
             />
 
@@ -139,7 +139,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="21sp"
-            android:text="Bán chạy"
+            android:text="Top Sales"
             android:id="@+id/tvBanChay"
             />
 
@@ -150,7 +150,7 @@
             android:gravity="center"
             android:layout_marginRight="3dp"
             android:textSize="21sp"
-            android:text="Giá ↕"
+            android:text="Price ↕"
             android:id="@+id/tvGia"
             />
 

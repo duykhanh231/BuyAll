@@ -19,7 +19,7 @@
             android:id="@+id/tvProductPRICE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Giá"
+            android:text="Price"
             android:textColor="#FF6347"
             android:textSize="30sp"
             android:padding="8dp" />
@@ -28,7 +28,7 @@
             android:id="@+id/tvProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên sản phẩm"
+            android:text="Product name"
             android:textSize="20sp"
             android:textStyle="bold"
             android:padding="8dp"/>
@@ -37,7 +37,7 @@
             android:id="@+id/tvShippingMethodandLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phương thức vận chuyển và vị trí"
+            android:text="Delivery method and Location"
             android:textSize="20sp"
             android:textStyle="bold"
             android:padding="8dp"/>
@@ -51,7 +51,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Đánh Giá Sản Phẩm"
+            android:text="Product Ratings"
             android:textStyle="bold"
             android:textSize="20sp" />
 
@@ -81,7 +81,7 @@
                 android:textStyle="bold"
                 android:textColor="#FF6347"
                 android:layout_marginBottom="6dp"
-                android:text="sao trung bình" />
+                android:text="Avg. Star " />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

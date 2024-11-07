@@ -110,7 +110,7 @@
         android:background="@color/ColorPrimary"
         android:gravity="right"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coupons_applied">

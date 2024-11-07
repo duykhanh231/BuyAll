@@ -9,7 +9,7 @@
         android:textSize="18sp"
         android:layout_margin="5dp"
         android:layout_marginTop="8dp"
-        android:text="Chi tiết sản phẩm"
+        android:text="Product detail"
         />
     <View
         android:id="@+id/divider"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:layout_margin="5dp"
-        android:text="Mô tả sản phẩm"
+        android:text="Product description"
         />
     <TextView
         android:id="@+id/tvProductDESCRIPTION"
@@ -31,6 +31,6 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_margin="5dp"
-        android:text="các dòng mô tả"
+        android:text="description lines"
         />
 </LinearLayout>
