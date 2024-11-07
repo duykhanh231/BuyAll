@@ -54,9 +54,9 @@ public class HomePageActivity extends AppCompatActivity {
         cartIcon.setOnClickListener(cartClickListener);
         cartText.setOnClickListener(cartClickListener);
 
-        Product_List productList1 = new Product_List("1","RAM LAPTOP DDR4 8GB", 400000, 4.5, "Nhanh", R.drawable.ddr4, "TP.HCM" );
-        Product_List productList2 = new Product_List("2", "RAM LAPTOP DDR5 8GB", 560000, 4, "Hỏa Tốc", R.drawable.ddr5,"TP.HCM" );
-        Product_List productList3 = new Product_List("3", "RAM LAPTOP DDR3 8GB", 150000, 3, "Hỏa Tốc", R.drawable.ddr3,"Đà Nẵng" );
+        Product_List productList1 = new Product_List("1","RAM LAPTOP DDR4 8GB", 400000, 4.5, "Standard", R.drawable.ddr4, "HCMC" );
+        Product_List productList2 = new Product_List("2", "RAM LAPTOP DDR5 8GB", 560000, 4, "Instant", R.drawable.ddr5,"HCMC" );
+        Product_List productList3 = new Product_List("3", "RAM LAPTOP DDR3 8GB", 150000, 3, "Instant", R.drawable.ddr3,"Da Nang" );
 
         productLists.add(productList1);
         productLists.add(productList2);
