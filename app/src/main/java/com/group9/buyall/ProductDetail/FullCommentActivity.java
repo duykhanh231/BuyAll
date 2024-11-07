@@ -94,10 +94,14 @@ public class FullCommentActivity extends AppCompatActivity {
 
             // Đặt màu đỏ cho TextView được nhấn
             textView.setTextColor(Color.RED);
+            textView.setBackgroundResource(R.drawable.border_textview_red);
         });
     }
     private void resetTextViewColors() {
         tvTATCA.setTextColor(Color.BLACK);
         tvCOHINHANHVAVIDEO.setTextColor(Color.BLACK);
+
+        tvTATCA.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvCOHINHANHVAVIDEO.setBackgroundColor(Color.parseColor("#D3D3D3"));
     }
 }

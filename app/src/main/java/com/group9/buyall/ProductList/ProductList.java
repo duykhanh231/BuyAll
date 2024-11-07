@@ -217,6 +217,7 @@ public class ProductList extends AppCompatActivity {
 
             // Đặt màu đỏ cho TextView được nhấn
             textView.setTextColor(Color.RED);
+            textView.setBackgroundResource(R.drawable.border_textview_red);
         });
     }
 
@@ -227,6 +228,7 @@ public class ProductList extends AppCompatActivity {
 
             // Đặt màu đỏ cho TextView được nhấn
             textView.setTextColor(Color.RED);
+            textView.setBackgroundResource(R.drawable.border_textview_red);
         });
     }
 
@@ -238,11 +240,13 @@ public class ProductList extends AppCompatActivity {
                 scrollpricerangeMAX.setText("100000");
                 resetPriceRangeScrollTextViewColors();
                 textView.setTextColor(Color.RED);
+                textView.setBackgroundResource(R.drawable.border_textview_red);
             } else {
                 scrollpricerangeMIN.setText("100000");
                 scrollpricerangeMAX.setText("200000");
                 resetPriceRangeScrollTextViewColors();
                 textView.setTextColor(Color.RED);
+                textView.setBackgroundResource(R.drawable.border_textview_red);
             }
         });
     }
@@ -254,6 +258,7 @@ public class ProductList extends AppCompatActivity {
 
             // Đặt màu đỏ cho TextView được nhấn
             textView.setTextColor(Color.RED);
+            textView.setBackgroundResource(R.drawable.border_textview_red);
         });
     }
 
@@ -264,6 +269,7 @@ public class ProductList extends AppCompatActivity {
 
             // Đặt màu đỏ cho TextView được nhấn
             textView.setTextColor(Color.RED);
+            textView.setBackgroundResource(R.drawable.border_textview_red);
         });
     }
 
@@ -274,6 +280,7 @@ public class ProductList extends AppCompatActivity {
 
             // Đặt màu đỏ cho TextView được nhấn
             textView.setTextColor(Color.RED);
+            textView.setBackgroundResource(R.drawable.border_textview_red);
         });
     }
 
@@ -289,17 +296,32 @@ public class ProductList extends AppCompatActivity {
         tvscrollHUE.setTextColor(Color.BLACK);
         tvscrollDANANG.setTextColor(Color.BLACK);
         tvscrollHANOI.setTextColor(Color.BLACK);
+
+        tvscrollTPHCM.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollHUE.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollDANANG.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollHANOI.setBackgroundColor(Color.parseColor("#D3D3D3"));
     }
 
     private void resetShippingUnitScrollTextViewColors() {
         tvscrollshippingTIETKIEM.setTextColor(Color.BLACK);
         tvscrollshippingNHANH.setTextColor(Color.BLACK);
         tvscrollshippingHOATOC.setTextColor(Color.BLACK);
+
+        tvscrollshippingTIETKIEM.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollshippingNHANH.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollshippingHOATOC.setBackgroundColor(Color.parseColor("#D3D3D3"));
+
+
     }
 
     private void resetPriceRangeScrollTextViewColors() {
         tvscrollprice100kto200k.setTextColor(Color.BLACK);
         tvscrollprice0to100k.setTextColor(Color.BLACK);
+
+        tvscrollprice100kto200k.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollprice0to100k.setBackgroundColor(Color.parseColor("#D3D3D3"));
+
     }
 
     private void resetRateScrollTextViewColors() {
@@ -308,6 +330,13 @@ public class ProductList extends AppCompatActivity {
         tvscrollrate3STAR.setTextColor(Color.BLACK);
         tvscrollrate4STAR.setTextColor(Color.BLACK);
         tvscrollrate5STAR.setTextColor(Color.BLACK);
+
+        tvscrollrate1STAR.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollrate2STAR.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollrate3STAR.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollrate4STAR.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollrate5STAR.setBackgroundColor(Color.parseColor("#D3D3D3"));
+
     }
 
     private void resetPromotionScrollTextViewColors() {
@@ -315,6 +344,11 @@ public class ProductList extends AppCompatActivity {
         tvscrollpromotionDANGGIAMGIA.setTextColor(Color.BLACK);
         tvscrollpromotionGICUNGRE.setTextColor(Color.BLACK);
         tvscrollpromotionHANGCOSAN.setTextColor(Color.BLACK);
+
+        tvscrollpromotionVOUCHERXTRA.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollpromotionDANGGIAMGIA.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollpromotionGICUNGRE.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollpromotionHANGCOSAN.setBackgroundColor(Color.parseColor("#D3D3D3"));
     }
 
     private void resetShopTypePromotionScrollTextViewColors() {
@@ -322,6 +356,11 @@ public class ProductList extends AppCompatActivity {
         tvscrollshoptypeCHOICE.setTextColor(Color.BLACK);
         tvscrollshoptypeSHOPKYCUU.setTextColor(Color.BLACK);
         tvscrollshoptypeSHOPXUHUONG.setTextColor(Color.BLACK);
+
+        tvscrollshoptypeSHOPYEUTHICH.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollshoptypeCHOICE.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollshoptypeSHOPKYCUU.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollshoptypeSHOPXUHUONG.setBackgroundColor(Color.parseColor("#D3D3D3"));
     }
 
     private void onFilterButtonClick() {
