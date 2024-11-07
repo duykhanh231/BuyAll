@@ -1,6 +1,7 @@
 package com.group9.buyall.ProductList;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.group9.buyall.R;
 
 import java.util.ArrayList;
@@ -38,6 +40,8 @@ public class ProductList extends AppCompatActivity {
     private TextView tvscrollpromotionVOUCHERXTRA, tvscrollpromotionDANGGIAMGIA, tvscrollpromotionGICUNGRE, tvscrollpromotionHANGCOSAN;
     private  TextView tvscrollshoptypeSHOPXUHUONG, tvscrollshoptypeSHOPYEUTHICH, tvscrollshoptypeSHOPKYCUU, tvscrollshoptypeCHOICE;
     private  EditText scrollpricerangeMAX, scrollpricerangeMIN;
+    private TextInputEditText textInputEditText;
+    private ImageButton turnbackarrow;
 
     private int tvGiaClickCount = 0;
     @Override
@@ -52,6 +56,8 @@ public class ProductList extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         rcvProduct.setLayoutManager(gridLayoutManager);
         rcvProduct.setAdapter(productListAdapter);
+
+        textInputEditText = findViewById(R.id.Search);
 
         Product_List productList1 = new Product_List("1","RAM LAPTOP DDR4 8GB", 400000, 4.5, "Nhanh", R.drawable.ddr4, "TP.HCM" );
         Product_List productList2 = new Product_List("2", "RAM LAPTOP DDR5 8GB", 560000, 4, "Hỏa Tốc", R.drawable.ddr5,"TP.HCM" );
@@ -142,6 +148,16 @@ public class ProductList extends AppCompatActivity {
         vfADS = findViewById(R.id.vfads);
         vfADS.setFlipInterval(3500);
         vfADS.startFlipping();
+
+        Intent intent = getIntent();
+        String searchQuery = intent.getStringExtra("search_query");
+        textInputEditText.setText(searchQuery);
+
+        turnbackarrow = findViewById(R.id.arrow);
+        turnbackarrow.setOnClickListener(v -> {
+
+            finish();
+        });
 
         dimOverlay.setOnClickListener(new View.OnClickListener() {
             @Override
