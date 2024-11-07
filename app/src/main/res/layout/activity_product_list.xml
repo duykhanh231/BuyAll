@@ -45,6 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Search"
+            android:background="@drawable/border_black"
+            android:layout_marginBottom="6dp"
             app:layout_constraintBottom_toBottomOf="@id/Bordersearch"
             app:layout_constraintEnd_toEndOf="@id/Bordersearch"
             app:layout_constraintStart_toStartOf="@id/Bordersearch"
