@@ -10,17 +10,19 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.group9.buyall.CartFragment;
 import com.group9.buyall.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FullCommentActivity extends AppCompatActivity {
-    private ImageButton ibArrow;
+    private ImageButton ibArrow,ibCart;
     private String productId;
     private List<ProductDetailComment> MyListProductDetailComment;
     private RecyclerView rcvFULLCOMMENT;
@@ -71,6 +73,10 @@ public class FullCommentActivity extends AppCompatActivity {
             }
         });
 
+        ibCart = findViewById(R.id.cart);
+        View.OnClickListener cartClickListener = v -> showCartFragment();
+        ibCart.setOnClickListener(cartClickListener);
+
         productId = getIntent().getStringExtra("PRODUCT_ID");
 
         rcvFULLCOMMENT = findViewById(R.id.rcvFULLCOMMENT);
@@ -103,5 +109,15 @@ public class FullCommentActivity extends AppCompatActivity {
 
         tvTATCA.setBackgroundColor(Color.parseColor("#D3D3D3"));
         tvCOHINHANHVAVIDEO.setBackgroundColor(Color.parseColor("#D3D3D3"));
+    }
+    private void showCartFragment() {
+        CartFragment cartFragment = new CartFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.cart_fragment_container, cartFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+        findViewById(R.id.cart_fragment_container).setVisibility(View.VISIBLE);
     }
 }

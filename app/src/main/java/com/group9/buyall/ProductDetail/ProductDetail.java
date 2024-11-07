@@ -1,6 +1,7 @@
 package com.group9.buyall.ProductDetail;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -8,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.group9.buyall.CartFragment;
 import com.group9.buyall.R;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ public class ProductDetail extends AppCompatActivity {
     private List<Product_Detail> MyProduct_Detail,ProductDetailStack;
     private List<Product_Description> MyProduct_Description,ProductDescriptionStack;
     private ProductDetailAdapter productDetailAdapter;
-    private ImageButton ibArrow;
+    private ImageButton ibArrow,ibCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,10 @@ public class ProductDetail extends AppCompatActivity {
             finish();
         });
 
+        ibCart = findViewById(R.id.cart);
+        View.OnClickListener cartClickListener = v -> showCartFragment();
+        ibCart.setOnClickListener(cartClickListener);
+
         for (Product_Detail product_detail : ProductDetailStack){
             if (product_detail.getProductId().equals(productId)){
                 MyProduct_Detail.add(product_detail);
@@ -105,5 +112,15 @@ public class ProductDetail extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+    private void showCartFragment() {
+        CartFragment cartFragment = new CartFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.cart_fragment_container, cartFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+        findViewById(R.id.cart_fragment_container).setVisibility(View.VISIBLE);
     }
 }
