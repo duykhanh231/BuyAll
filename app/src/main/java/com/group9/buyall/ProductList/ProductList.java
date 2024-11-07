@@ -208,18 +208,18 @@ public class ProductList extends AppCompatActivity {
             if (textView == tvGia) {
                 tvGiaClickCount++;
                 if (tvGiaClickCount == 1) {
-                    textView.setText("Giá ↑");
+                    textView.setText("Price ↑");
                 } else if (tvGiaClickCount == 2) {
-                    textView.setText("Giá ↓");
+                    textView.setText("Price ↓");
                 } else {
                     tvGiaClickCount = 0;
-                    textView.setText("Giá ↕");
+                    textView.setText("Price ↕");
                 }
                 resetTextViewColors();
                 textView.setTextColor(Color.RED);
             } else {
                 tvGiaClickCount = 0;
-                tvGia.setText("Giá ↕");
+                tvGia.setText("Price ↕");
                 resetTextViewColors();
                 textView.setTextColor(Color.RED);
             }
@@ -252,7 +252,7 @@ public class ProductList extends AppCompatActivity {
     private void setPriceRangeScrollTextViewClickListener(TextView textView) {
         textView.setOnClickListener(v -> {
             if (textView == tvscrollprice0to100k) {
-                scrollpricerangeMIN.setText("00");
+                scrollpricerangeMIN.setText("0");
                 scrollpricerangeMAX.setText("100000");
                 resetPriceRangeScrollTextViewColors();
                 textView.setTextColor(Color.RED);
