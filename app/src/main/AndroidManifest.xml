@@ -26,6 +26,7 @@
         <activity android:name=".OrderHistoryActivity" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".SignUp" />
+        <activity android:name=".ProductList.ProductList" />
         <activity android:name=".ProductDetail.ProductDetail" />
         <activity android:name=".ProductDetail.FullCommentActivity" />
 

@@ -1,7 +1,13 @@
 package com.group9.buyall;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.group9.buyall.ProductList.ProductList;
 import com.group9.buyall.ProductList.ProductListAdapter;
 import com.group9.buyall.ProductList.Product_List;
 
@@ -23,6 +30,7 @@ public class HomePageActivity extends AppCompatActivity {
     private RecyclerView rcvPRODUCTLIST;
     private List<Product_List> productLists;
     private ProductListAdapter productListAdapter;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +39,8 @@ public class HomePageActivity extends AppCompatActivity {
 
         cartIcon = findViewById(R.id.imageView11);
         cartText = findViewById(R.id.textView14);
+
+        editText = findViewById(R.id.editTextText2);
 
         rcvPRODUCTLIST = findViewById(R.id.view1);
         productLists = new ArrayList<>();
@@ -51,6 +61,29 @@ public class HomePageActivity extends AppCompatActivity {
         productLists.add(productList1);
         productLists.add(productList2);
         productLists.add(productList3);
+
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                // Kiểm tra nếu người dùng nhấn Enter
+                if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    // Lấy giá trị đã nhập từ EditText
+                    String searchQuery = editText.getText().toString();
+
+                    // Tạo Intent để chuyển hướng tới Activity mới
+                    Intent intent = new Intent(HomePageActivity.this, ProductList.class);
+                    intent.putExtra("search_query", searchQuery); // Chuyển giá trị tìm kiếm qua Activity mới
+                    startActivity(intent);
+
+                    // Đóng bàn phím
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void showCartFragment() {
