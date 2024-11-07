@@ -23,6 +23,10 @@
         </activity>
 
         <activity android:name=".HomePageActivity" />
+        <activity android:name=".OrderHistoryActivity" />
+        <activity android:name=".ForgotPassword" />
+        <activity android:name=".SignUp" />
+
 
 
         <activity
