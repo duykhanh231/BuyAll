@@ -2,6 +2,7 @@ package com.group9.buyall.ProductDetail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.group9.buyall.R;
@@ -115,9 +118,17 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
             holder.tvListenerText.setOnClickListener(v -> {
                 if (!productDetails.isEmpty()) {
                     String productId = productDetails.get(0).getProductId();
-                    Intent intent = new Intent(context, FullCommentActivity.class);
-                    intent.putExtra("PRODUCT_ID", productId);
-                    context.startActivity(intent);
+
+                    // Replace fragment instead of starting a new activity
+                    FullCommentFragment fullCommentFragment = new FullCommentFragment();
+                    Bundle args = new Bundle();
+                    args.putString("PRODUCT_ID", productId);
+                    fullCommentFragment.setArguments(args);
+                    FragmentTransaction transaction = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fullcomment_container, fullCommentFragment); // Replace your fragment container ID
+                    transaction.addToBackStack(null); // Add to back stack so that user can go back
+                    transaction.commit();
+                    ((AppCompatActivity) context).findViewById(R.id.fullcomment_container).setVisibility(View.VISIBLE);
                 }
             });
         }

@@ -2,6 +2,7 @@ package com.group9.buyall.ProductDetail;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -27,6 +28,8 @@ public class ProductDetail extends AppCompatActivity {
     private List<Product_Description> MyProduct_Description,ProductDescriptionStack;
     private ProductDetailAdapter productDetailAdapter;
     private ImageButton ibArrow,ibCart;
+    private int INT=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,15 +81,35 @@ public class ProductDetail extends AppCompatActivity {
         rcvPRODUCTDETAIL.setLayoutManager(linearLayoutManager);
         rcvPRODUCTDETAIL.setAdapter(productDetailAdapter);
 
-        ibArrow = findViewById(R.id.arrow);
-        ibArrow.setOnClickListener(v -> {
-
-            finish();
-        });
-
         ibCart = findViewById(R.id.cart);
         View.OnClickListener cartClickListener = v -> showCartFragment();
         ibCart.setOnClickListener(cartClickListener);
+
+        ibArrow = findViewById(R.id.arrow);
+
+        ibArrow.setOnClickListener(v -> {
+            FrameLayout cartFragmentContainer = findViewById(R.id.cart_fragment_container);
+            FrameLayout fullCommentContainer = findViewById(R.id.fullcomment_container);
+
+            if (cartFragmentContainer.getVisibility() == View.VISIBLE) {
+                if (INT == 1) {
+                    // Hiển thị lại `fullcomment_container` nếu `INT = 1`
+                    cartFragmentContainer.setVisibility(View.INVISIBLE);
+                    fullCommentContainer.setVisibility(View.VISIBLE);
+                    INT = 0; // Reset INT sau khi khôi phục fullcomment_container
+                } else {
+                    // Đóng `cart_fragment_container` nếu `INT = 0`
+                    cartFragmentContainer.setVisibility(View.INVISIBLE);
+                }
+            } else if (fullCommentContainer.getVisibility() == View.VISIBLE) {
+                fullCommentContainer.setVisibility(View.INVISIBLE);
+            } else {
+                finish();
+            }
+        });
+
+
+
 
         for (Product_Detail product_detail : ProductDetailStack){
             if (product_detail.getProductId().equals(productId)){
@@ -116,11 +139,19 @@ public class ProductDetail extends AppCompatActivity {
     private void showCartFragment() {
         CartFragment cartFragment = new CartFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
         transaction.replace(R.id.cart_fragment_container, cartFragment);
         transaction.addToBackStack(null);
         transaction.commit();
 
-        findViewById(R.id.cart_fragment_container).setVisibility(View.VISIBLE);
+        FrameLayout fullCommentContainer = findViewById(R.id.fullcomment_container);
+        if (fullCommentContainer.getVisibility() == View.VISIBLE) {
+            fullCommentContainer.setVisibility(View.INVISIBLE);
+            INT = 1;
+        } else {
+            INT = 0;
+        }
+        // Hiển thị `cart_fragment_container`
+        FrameLayout cartFragmentContainer = findViewById(R.id.cart_fragment_container);
+        cartFragmentContainer.setVisibility(View.VISIBLE);
     }
 }

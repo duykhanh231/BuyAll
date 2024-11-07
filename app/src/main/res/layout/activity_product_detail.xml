@@ -101,6 +101,18 @@
     <FrameLayout
         android:id="@+id/cart_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/headerlayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:visibility="gone" />
+    <FrameLayout
+        android:id="@+id/fullcomment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/headerlayout"
+        app:layout_constraintBottom_toTopOf="@id/footerlayout"
+        android:visibility="gone"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
