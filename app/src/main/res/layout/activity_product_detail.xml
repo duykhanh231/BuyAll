@@ -57,7 +57,7 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="#32CD32"
+            android:background="@color/ForestGreen"
         >
 
         <ImageView
