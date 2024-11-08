@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +28,8 @@ public class HomePageActivity extends AppCompatActivity {
 
     private ImageView cartIcon;
     private TextView cartText;
+    private ImageView profileIcon;
+    private TextView profileText;
     private RecyclerView rcvPRODUCTLIST;
     private List<Product_List> productLists;
     private ProductListAdapter productListAdapter;
@@ -39,6 +42,9 @@ public class HomePageActivity extends AppCompatActivity {
 
         cartIcon = findViewById(R.id.imageView11);
         cartText = findViewById(R.id.textView14);
+
+        profileIcon = findViewById(R.id.imageView12);
+        profileText = findViewById(R.id.textView15);
 
         editText = findViewById(R.id.editTextText2);
 
@@ -53,6 +59,10 @@ public class HomePageActivity extends AppCompatActivity {
         View.OnClickListener cartClickListener = v -> showCartFragment();
         cartIcon.setOnClickListener(cartClickListener);
         cartText.setOnClickListener(cartClickListener);
+
+        View.OnClickListener profileClickListener = v -> showSignin();
+        profileText.setOnClickListener(profileClickListener);
+        profileIcon.setOnClickListener(profileClickListener);
 
         Product_List productList1 = new Product_List("1","RAM LAPTOP DDR4 8GB", 400000, 4.5, "Standard", R.drawable.ddr4, "HCMC" );
         Product_List productList2 = new Product_List("2", "RAM LAPTOP DDR5 8GB", 560000, 4, "Instant", R.drawable.ddr5,"HCMC" );
@@ -96,4 +106,11 @@ public class HomePageActivity extends AppCompatActivity {
 
         findViewById(R.id.cart_fragment_container).setVisibility(View.VISIBLE);
     }
+
+    private void showSignin() {
+        Intent intent = new Intent(HomePageActivity.this, SignIn.class);
+        startActivity(intent);
+    }
+
+
 }
