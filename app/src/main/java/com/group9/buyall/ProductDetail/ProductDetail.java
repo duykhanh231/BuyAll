@@ -28,8 +28,6 @@ public class ProductDetail extends AppCompatActivity {
     private List<Product_Description> MyProduct_Description,ProductDescriptionStack;
     private ProductDetailAdapter productDetailAdapter;
     private ImageButton ibArrow,ibCart;
-    private int INT=0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,18 +89,13 @@ public class ProductDetail extends AppCompatActivity {
             FrameLayout cartFragmentContainer = findViewById(R.id.cart_fragment_container);
             FrameLayout fullCommentContainer = findViewById(R.id.fullcomment_container);
 
-            if (cartFragmentContainer.getVisibility() == View.VISIBLE) {
-                if (INT == 1) {
-                    // Hiển thị lại `fullcomment_container` nếu `INT = 1`
-                    cartFragmentContainer.setVisibility(View.INVISIBLE);
-                    fullCommentContainer.setVisibility(View.VISIBLE);
-                    INT = 0; // Reset INT sau khi khôi phục fullcomment_container
-                } else {
-                    // Đóng `cart_fragment_container` nếu `INT = 0`
-                    cartFragmentContainer.setVisibility(View.INVISIBLE);
-                }
-            } else if (fullCommentContainer.getVisibility() == View.VISIBLE) {
-                fullCommentContainer.setVisibility(View.INVISIBLE);
+            if (cartFragmentContainer.getVisibility() == View.VISIBLE&&fullCommentContainer.getVisibility() == View.INVISIBLE) {
+                cartFragmentContainer.setVisibility(View.GONE);
+                fullCommentContainer.setVisibility(View.VISIBLE);
+            } else if (cartFragmentContainer.getVisibility() == View.VISIBLE) {
+                cartFragmentContainer.setVisibility(View.GONE);
+            }else if (fullCommentContainer.getVisibility() == View.VISIBLE) {
+                fullCommentContainer.setVisibility(View.GONE);
             } else {
                 finish();
             }
@@ -146,9 +139,6 @@ public class ProductDetail extends AppCompatActivity {
         FrameLayout fullCommentContainer = findViewById(R.id.fullcomment_container);
         if (fullCommentContainer.getVisibility() == View.VISIBLE) {
             fullCommentContainer.setVisibility(View.INVISIBLE);
-            INT = 1;
-        } else {
-            INT = 0;
         }
         // Hiển thị `cart_fragment_container`
         FrameLayout cartFragmentContainer = findViewById(R.id.cart_fragment_container);
