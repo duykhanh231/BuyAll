@@ -1,20 +1,26 @@
 package com.group9.buyall.ProductList;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.group9.buyall.CartFragment;
 import com.group9.buyall.R;
+
+
+
 public class FilterFragment extends Fragment {
     private TextView tvscrollTPHCM, tvscrollHANOI, tvscrollHUE, tvscrollDANANG;
     private TextView tvscrollshippingHOATOC, tvscrollshippingNHANH, tvscrollshippingTIETKIEM;
@@ -24,16 +30,23 @@ public class FilterFragment extends Fragment {
     private TextView tvscrollshoptypeSHOPXUHUONG, tvscrollshoptypeSHOPYEUTHICH, tvscrollshoptypeSHOPKYCUU, tvscrollshoptypeCHOICE;
     private EditText scrollpricerangeMAX, scrollpricerangeMIN;
     private Button Xacnhanfilterbtn,Xaclaplaifilterbtn;
+    private TextView tvXEMTHEM;
+    private LinearLayout llmORELOCATION;
+    private TextView tvXEMFULL;
+    private TextView tvscrollHOIAN,tvscrollVUNGTAU,tvscrollBINHDUONG,tvscrollNHATRANG,tvscrollANGIANG,tvscrollBINHTHUAN,
+            tvscrollBINHPHUOC,tvscrollBINHDINH,tvscrollBACLIEU,tvscrollBACGIANG,tvscrollBACKAN,
+            tvscrollBACNINH,tvscrollBENTRE,tvscrollCAOBANG;
+    FrameLayout frameFullCommentContainer,frameCHE;
     public FilterFragment() {
-    }
-
-    ;
-
+    };
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.content_scroll, container, false);
+
+        tvXEMFULL = view.findViewById(R.id.tvscrollXEMFULL);
+
         Xacnhanfilterbtn = view.findViewById(R.id.btnscrollXACNHAN);
         Xaclaplaifilterbtn = view.findViewById(R.id.btnscrollXACLAPLAI);
 
@@ -44,6 +57,21 @@ public class FilterFragment extends Fragment {
         tvscrollDANANG = view.findViewById(R.id.tvscrollDANANG);
         tvscrollHUE = view.findViewById(R.id.tvscrollHUE);
         tvscrollTPHCM = view.findViewById(R.id.tvscrollTPHCM);
+
+        tvscrollHOIAN = view.findViewById(R.id.tvscrollHOIAN);
+        tvscrollVUNGTAU = view.findViewById(R.id.tvscrollVUNGTAU);
+        tvscrollBINHDUONG = view.findViewById(R.id.tvscrollBINHDUONG);
+        tvscrollNHATRANG = view.findViewById(R.id.tvscrollNHATRANG);
+        tvscrollANGIANG = view.findViewById(R.id.tvscrollANGIANG);
+        tvscrollBINHTHUAN = view.findViewById(R.id.tvscrollBINHTHUAN);
+        tvscrollBINHPHUOC = view.findViewById(R.id.tvscrollBINHPHUOC);
+        tvscrollBINHDINH = view.findViewById(R.id.tvscrollBINHDINH);
+        tvscrollBACLIEU = view.findViewById(R.id.tvscrollBACLIEU);
+        tvscrollBACGIANG = view.findViewById(R.id.tvscrollBACGIANG);
+        tvscrollBACKAN = view.findViewById(R.id.tvscrollBACKAN);
+        tvscrollBACNINH = view.findViewById(R.id.tvscrollBACNINH);
+        tvscrollBENTRE = view.findViewById(R.id.tvscrollBENTRE);
+        tvscrollCAOBANG = view.findViewById(R.id.tvscrollCAOBANG);
 
         tvscrollshippingHOATOC = view.findViewById(R.id.tvscrollshippingHOATOC);
         tvscrollshippingNHANH = view.findViewById(R.id.tvscrollshippingNHANH);
@@ -73,6 +101,21 @@ public class FilterFragment extends Fragment {
         setLocationScrollTextViewClickListener(tvscrollHUE);
         setLocationScrollTextViewClickListener(tvscrollTPHCM);
 
+        setLocationScrollTextViewClickListener(tvscrollHOIAN);
+        setLocationScrollTextViewClickListener(tvscrollVUNGTAU);
+        setLocationScrollTextViewClickListener(tvscrollBINHDUONG);
+        setLocationScrollTextViewClickListener(tvscrollNHATRANG);
+        setLocationScrollTextViewClickListener(tvscrollANGIANG);
+        setLocationScrollTextViewClickListener(tvscrollBINHTHUAN);
+        setLocationScrollTextViewClickListener(tvscrollBINHPHUOC);
+        setLocationScrollTextViewClickListener(tvscrollBINHDINH);
+        setLocationScrollTextViewClickListener(tvscrollBACLIEU);
+        setLocationScrollTextViewClickListener(tvscrollBACGIANG);
+        setLocationScrollTextViewClickListener(tvscrollBACKAN);
+        setLocationScrollTextViewClickListener(tvscrollBACNINH);
+        setLocationScrollTextViewClickListener(tvscrollBENTRE);
+        setLocationScrollTextViewClickListener(tvscrollCAOBANG);
+
         setShippingUnitScrollTextViewClickListener(tvscrollshippingHOATOC);
         setShippingUnitScrollTextViewClickListener(tvscrollshippingNHANH);
         setShippingUnitScrollTextViewClickListener(tvscrollshippingTIETKIEM);
@@ -95,6 +138,35 @@ public class FilterFragment extends Fragment {
         setShopTypeScrollTextViewClickListener(tvscrollshoptypeSHOPYEUTHICH);
         setShopTypeScrollTextViewClickListener(tvscrollshoptypeSHOPKYCUU);
         setShopTypeScrollTextViewClickListener(tvscrollshoptypeCHOICE);
+
+        llmORELOCATION = view.findViewById(R.id.llMORELOCATION);
+        tvXEMTHEM = view.findViewById(R.id.tvscrollXEMTHEM);
+        tvXEMTHEM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llmORELOCATION.setVisibility(View.VISIBLE);
+                tvXEMTHEM.setVisibility(View.GONE);
+            }
+        });
+
+        tvXEMFULL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                FullLocationFragment childFragment = new FullLocationFragment();
+
+                FrameLayout containerView = view.findViewById(R.id.flFullcomment);
+
+                // Thêm fragment con vào container trong fragment cha
+                transaction.replace(R.id.flFullcomment, childFragment);
+                transaction.commit();
+                frameFullCommentContainer = getActivity().findViewById(R.id.flFullcomment);
+                frameCHE = getActivity().findViewById(R.id.flCHE);
+                frameFullCommentContainer.setVisibility(View.VISIBLE);
+                updateVisibility();
+
+            }
+        });
 
         Xacnhanfilterbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +194,6 @@ public class FilterFragment extends Fragment {
                 scrollpricerangeMAX.setText("");
             }
         });
-
         return view;
     }
     private void setLocationScrollTextViewClickListener(TextView textView) {
@@ -225,11 +296,39 @@ public class FilterFragment extends Fragment {
         tvscrollHUE.setTextColor(Color.BLACK);
         tvscrollDANANG.setTextColor(Color.BLACK);
         tvscrollHANOI.setTextColor(Color.BLACK);
+        tvscrollHOIAN.setTextColor(Color.BLACK);
+        tvscrollVUNGTAU.setTextColor(Color.BLACK);
+        tvscrollBINHDUONG.setTextColor(Color.BLACK);
+        tvscrollNHATRANG.setTextColor(Color.BLACK);
+        tvscrollANGIANG.setTextColor(Color.BLACK);
+        tvscrollBINHTHUAN.setTextColor(Color.BLACK);
+        tvscrollBINHPHUOC.setTextColor(Color.BLACK);
+        tvscrollBINHDINH.setTextColor(Color.BLACK);
+        tvscrollBACLIEU.setTextColor(Color.BLACK);
+        tvscrollBACGIANG.setTextColor(Color.BLACK);
+        tvscrollBACKAN.setTextColor(Color.BLACK);
+        tvscrollBACNINH.setTextColor(Color.BLACK);
+        tvscrollBENTRE.setTextColor(Color.BLACK);
+        tvscrollCAOBANG.setTextColor(Color.BLACK);
 
         tvscrollTPHCM.setBackgroundColor(Color.parseColor("#D3D3D3"));
         tvscrollHUE.setBackgroundColor(Color.parseColor("#D3D3D3"));
         tvscrollDANANG.setBackgroundColor(Color.parseColor("#D3D3D3"));
         tvscrollHANOI.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollHOIAN.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollVUNGTAU.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollBINHDUONG.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollNHATRANG.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollANGIANG.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollBINHTHUAN.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollBINHPHUOC.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollBINHDINH.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollBACLIEU.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollBACGIANG.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollBACKAN.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollBACNINH.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollBENTRE.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        tvscrollCAOBANG.setBackgroundColor(Color.parseColor("#D3D3D3"));
     }
 
     private void resetShippingUnitScrollTextViewColors() {
@@ -290,5 +389,13 @@ public class FilterFragment extends Fragment {
         tvscrollshoptypeCHOICE.setBackgroundColor(Color.parseColor("#D3D3D3"));
         tvscrollshoptypeSHOPKYCUU.setBackgroundColor(Color.parseColor("#D3D3D3"));
         tvscrollshoptypeSHOPXUHUONG.setBackgroundColor(Color.parseColor("#D3D3D3"));
+    }
+    void updateVisibility() {
+
+        if (frameFullCommentContainer.getVisibility() == View.VISIBLE) {
+            frameCHE.setVisibility(View.VISIBLE);
+        } else {
+            frameCHE.setVisibility(View.GONE);
+        }
     }
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:flexbox="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -14,7 +13,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="#D3D3D3" />
-
     <TextView
         android:id="@+id/Boloctimkiem"
         android:layout_width="wrap_content"
@@ -86,61 +84,299 @@
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
 
-            <com.google.android.flexbox.FlexboxLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                flexbox:flexWrap="wrap"
-                flexbox:justifyContent="flex_start"
-                >
+                android:orientation="vertical"
+                android:padding="5dp">
 
-                <TextView
-                    android:layout_width="150dp"
+                <!-- First Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ho Chi Minh City"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollTPHCM"
-                    />
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Hanoi"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollHANOI"
-                    />
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Thua Thien - Hue"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollHUE"
-                    />
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Da Nang"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollDANANG"
-                    />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Ho Chi Minh City"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvscrollTPHCM" />
 
-            </com.google.android.flexbox.FlexboxLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Hanoi"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvscrollHANOI" />
+                </LinearLayout>
+
+                <!-- Second Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Thua Thien - Hue"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvscrollHUE" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Da Nang"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvscrollDANANG" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/llMORELOCATION"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- First Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Hoi An"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollHOIAN" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Vung Tau"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollVUNGTAU" />
+                    </LinearLayout>
+
+                    <!-- Second Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Binh Duong"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollBINHDUONG" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Nha Trang"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollNHATRANG" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="An Giang"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollANGIANG" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Binh Thuan"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollBINHTHUAN" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Binh Phuoc"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollBINHPHUOC" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Binh Dinh"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollBINHDINH" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bac Lieu"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollBACLIEU" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bac Giang"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollBACGIANG" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bac Kan"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollBACKAN" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bac Ninh"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollBACNINH" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Ben Tre"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollBENTRE" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Cao Bang"
+                            android:layout_margin="5dp"
+                            android:background="#D3D3D3"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:id="@+id/tvscrollCAOBANG" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvscrollXEMFULL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="All Location ↓"
+                        android:textSize="20sp"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tvscrollXEMTHEM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="More ↓"
+                    android:textSize="20sp"
+                    android:gravity="center"/>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/divider2"
                 />
             <LinearLayout
@@ -159,48 +395,78 @@
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
 
-            <com.google.android.flexbox.FlexboxLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                flexbox:flexWrap="wrap"
-                flexbox:justifyContent="flex_start">
+                android:orientation="vertical"
+                android:padding="5dp">
 
-                <TextView
-                    android:layout_width="150dp"
+                <!-- First Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Instant"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollshippingHOATOC"
-                    />
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                <TextView
-                    android:layout_width="150dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Instant"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvscrollshippingHOATOC" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Standard"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvscrollshippingNHANH" />
+                </LinearLayout>
+
+                <!-- Second Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Standard"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollshippingNHANH"
-                    />
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Saving"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollshippingTIETKIEM"
-                    />
-            </com.google.android.flexbox.FlexboxLayout>
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Saving"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvscrollshippingTIETKIEM" />
+                    <TextView
+                        android:visibility="invisible"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Standard"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                         />
+                </LinearLayout>
+
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/divider2"
                 />
             <LinearLayout
@@ -266,38 +532,48 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
-            <com.google.android.flexbox.FlexboxLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                flexbox:flexWrap="wrap"
-                flexbox:justifyContent="flex_start">
+                android:orientation="vertical"
+                android:padding="5dp">
 
-                <TextView
-                    android:layout_width="150dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0 - 100k"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollprice0to100k"
-                    />
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="100k - 200k"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollprice100kto200k"
-                    />
-            </com.google.android.flexbox.FlexboxLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="0 - 100k"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollprice0to100k" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="100k - 200k"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollprice100kto200k" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/divider2"
                 />
             <LinearLayout
@@ -316,68 +592,106 @@
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
 
-            <com.google.android.flexbox.FlexboxLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                flexbox:flexWrap="wrap"
-                flexbox:justifyContent="flex_start">
+                android:orientation="vertical"
+                android:padding="5dp">
 
-                <TextView
-                    android:layout_width="150dp"
+                <!-- Cặp TextView đầu tiên -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="5 Stars"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollrate5STAR"
-                    />
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                <TextView
-                    android:layout_width="150dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="5 Stars"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollrate5STAR" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="> 4 Stars"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollrate4STAR" />
+                </LinearLayout>
+
+                <!-- Cặp TextView thứ 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="> 4 Stars"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollrate4STAR"
-                    />
-                <TextView
-                    android:layout_width="150dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="> 3 Stars"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollrate3STAR" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="> 2 Stars"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollrate2STAR" />
+                </LinearLayout>
+
+                <!-- Cặp TextView thứ 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="> 3 Stars"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollrate3STAR"
-                    />
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="> 2 Stars"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollrate2STAR"
-                    />
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="> 1 Star"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollrate1STAR"
-                    />
-            </com.google.android.flexbox.FlexboxLayout>
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="> 1 Star"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollrate1STAR" />
+                    <TextView
+                        android:visibility="invisible"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="> 1 Star"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/divider2"
                 />
             <LinearLayout
@@ -396,58 +710,78 @@
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
 
-            <com.google.android.flexbox.FlexboxLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                flexbox:flexWrap="wrap"
-                flexbox:justifyContent="flex_start">
+                android:orientation="vertical"
+                android:padding="5dp">
 
-                <TextView
-                    android:layout_width="150dp"
+                <!-- Nhóm TextView 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Voucher Xtra"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollpromotionVOUCHERXTRA"
-                    />
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                <TextView
-                    android:layout_width="150dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Voucher Xtra"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollpromotionVOUCHERXTRA" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Đang giảm giá"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollpromotionDANGGIAMGIA" />
+                </LinearLayout>
+
+                <!-- Nhóm TextView 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Đang giảm giá"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollpromotionDANGGIAMGIA"
-                    />
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Gì cũng rẻ"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollpromotionGICUNGRE"
-                    />
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Hàng có sẵn"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollpromotionHANGCOSAN"
-                    />
-            </com.google.android.flexbox.FlexboxLayout>
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Gì cũng rẻ"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollpromotionGICUNGRE" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Hàng có sẵn"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollpromotionHANGCOSAN" />
+                </LinearLayout>
+
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/divider2"
                 />
             <LinearLayout
@@ -466,62 +800,91 @@
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
 
-            <com.google.android.flexbox.FlexboxLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                flexbox:flexWrap="wrap"
-                flexbox:justifyContent="flex_start">
+                android:orientation="vertical"
+                android:padding="5dp">
 
-                <TextView
-                    android:layout_width="150dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Shop Xu Hướng"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollshoptypeSHOPXUHUONG"
-                    />
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                <TextView
-                    android:layout_width="150dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Shop Xu Hướng"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvscrollshoptypeSHOPXUHUONG" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Shop Yêu Thích"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvscrollshoptypeSHOPYEUTHICH" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Shop Yêu Thích"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollshoptypeSHOPYEUTHICH"
-                    />
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Shop Kỳ Cựu"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollshoptypeSHOPKYCUU"
-                    />
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Choice"
-                    android:layout_margin="5dp"
-                    android:background="#D3D3D3"
-                    android:gravity="center"
-                    android:textSize="21sp"
-                    android:id="@+id/tvscrollshoptypeCHOICE"
-                    />
-            </com.google.android.flexbox.FlexboxLayout>
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Shop Kỳ Cựu"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvscrollshoptypeSHOPKYCUU" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Choice"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvscrollshoptypeCHOICE" />
+                </LinearLayout>
+            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/divider2"
                 />
         </LinearLayout>
 
     </ScrollView>
-
+    <FrameLayout
+        android:id="@+id/flCHE"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone"
+        />
+<FrameLayout
+    android:id="@+id/flFullcomment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentBottom="true"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
