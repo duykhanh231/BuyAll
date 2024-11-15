@@ -38,7 +38,7 @@
                 android:id="@+id/total_cart_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.536.000 VND"
+                android:text="56.789.000 VND"
                 android:textColor="@color/Black"
                 android:textSize="20sp"
                 android:textStyle="bold" />

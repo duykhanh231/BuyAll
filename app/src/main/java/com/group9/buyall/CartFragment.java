@@ -77,10 +77,10 @@ public class CartFragment extends Fragment {
         cartItemRecyclerView.setLayoutManager(layoutManager);
 
         List<CartItemModel> cartItemModelList = new ArrayList<>();
-        cartItemModelList.add(new CartItemModel(0,R.drawable._00_16pd_4,"iPhone 128GB VN/A",2,"16.000.000 VND","32.000.000 VND",1,0,0));
-        cartItemModelList.add(new CartItemModel(0,R.drawable._00_16pd_4,"iPhone 128GB VN/A",0,"16.000.000 VND","32.000.000 VND",1,1,0));
-        cartItemModelList.add(new CartItemModel(0,R.drawable._00_16pd_4,"iPhone 128GB VN/A",2,"16.000.000 VND","32.000.000 VND",1,0,0));
-        cartItemModelList.add(new CartItemModel(1,"Price (3 items)","48.000.000 VND","Free","48.000.000 VND","48.000.000VND"));
+        cartItemModelList.add(new CartItemModel(0,R.drawable.iphone16,"iPhone 128GB VN/A",2,"16.000.000 VND","32.000.000 VND",1,0,0));
+        cartItemModelList.add(new CartItemModel(0,R.drawable.applewatch,"Apple Watch Series 10",0,"11.799.000 VND","27.990.000 VND",1,1,0));
+        cartItemModelList.add(new CartItemModel(0,R.drawable.macbookpro,"MacBook Pro 13.3-inch Apple M1 Chip 8‑Core CPU",2,"28.990.000 VND","49.990.000 VND",1,0,0));
+        cartItemModelList.add(new CartItemModel(1,"Price (3 items)","109.980.000 VND","Free","56.789.000 VND","53.191.000 VND"));
 
         CartAdapter cartAdapter = new CartAdapter(cartItemModelList);
         cartItemRecyclerView.setAdapter(cartAdapter);
