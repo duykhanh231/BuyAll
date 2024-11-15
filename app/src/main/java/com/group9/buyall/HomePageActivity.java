@@ -60,7 +60,7 @@ public class HomePageActivity extends AppCompatActivity {
         cartIcon.setOnClickListener(cartClickListener);
         cartText.setOnClickListener(cartClickListener);
 
-        View.OnClickListener profileClickListener = v -> showSignin();
+        View.OnClickListener profileClickListener = v -> showProfile();
         profileText.setOnClickListener(profileClickListener);
         profileIcon.setOnClickListener(profileClickListener);
 
@@ -107,8 +107,8 @@ public class HomePageActivity extends AppCompatActivity {
         findViewById(R.id.cart_fragment_container).setVisibility(View.VISIBLE);
     }
 
-    private void showSignin() {
-        Intent intent = new Intent(HomePageActivity.this, SignIn.class);
+    private void showProfile() {
+        Intent intent = new Intent(HomePageActivity.this, ProfileActivity.class);
         startActivity(intent);
     }
 
