@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "268545099446",
-    "project_id": "buyall-project",
-    "storage_bucket": "buyall-project.firebasestorage.app"
+    "project_number": "101582043238",
+    "project_id": "buyall-new",
+    "storage_bucket": "buyall-new.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:268545099446:android:452585eecb57e7495fc817",
+        "mobilesdk_app_id": "1:101582043238:android:e7e77179420469a76615a7",
         "android_client_info": {
           "package_name": "com.group9.buyall"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCmEIC-cT__TO1EQ0xLqIksCaUUJSt7tvU"
+          "current_key": "AIzaSyBCPne9V_nbYdtTdWpyG5YXOl4UtAUuhpg"
         }
       ],
       "services": {

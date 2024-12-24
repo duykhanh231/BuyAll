@@ -2,7 +2,11 @@ package com.group9.buyall;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,13 +14,31 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class ForgotPassword extends AppCompatActivity {
+
+    private DatabaseReference databaseReference;
+    private EditText usernameEditText, emailEditText, newPasswordEditText, confirmNewPasswordEditText;
+    private Button resetPasswordButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.forgotpassword);
+
+        // Khởi tạo Firebase Database Reference
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
+        // Ánh xạ các trường giao diện
+        usernameEditText = findViewById(R.id.username);
+        emailEditText = findViewById(R.id.email);
+        newPasswordEditText = findViewById(R.id.new_password);
+        confirmNewPasswordEditText = findViewById(R.id.confirm_new_password);
+        resetPasswordButton = findViewById(R.id.reset_password_button);
 
         // Cài đặt padding cho bố cục chính
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.Forgotpd), (v, insets) -> {
@@ -30,7 +52,80 @@ public class ForgotPassword extends AppCompatActivity {
         signInText.setOnClickListener(v -> {
             Intent intent = new Intent(ForgotPassword.this, SignIn.class);
             startActivity(intent);
-            finish(); // Đóng ForgotPasswordMainActivity
+            finish(); // Đóng ForgotPasswordActivity
+        });
+
+        // Sự kiện khi nhấn nút "RESET PASSWORD"
+        resetPasswordButton.setOnClickListener(v -> {
+            String username = usernameEditText.getText().toString().trim();
+            String email = emailEditText.getText().toString().trim();
+            String newPassword = newPasswordEditText.getText().toString().trim();
+            String confirmNewPassword = confirmNewPasswordEditText.getText().toString().trim();
+
+            // Kiểm tra các trường nhập liệu
+            if (TextUtils.isEmpty(username)) {
+                usernameEditText.setError("Username is required!");
+                return;
+            }
+
+            if (TextUtils.isEmpty(email)) {
+                emailEditText.setError("Email is required!");
+                return;
+            }
+
+            if (TextUtils.isEmpty(newPassword)) {
+                newPasswordEditText.setError("New password is required!");
+                return;
+            }
+
+            if (TextUtils.isEmpty(confirmNewPassword)) {
+                confirmNewPasswordEditText.setError("Confirm new password is required!");
+                return;
+            }
+
+            if (!newPassword.equals(confirmNewPassword)) {
+                confirmNewPasswordEditText.setError("Passwords do not match!");
+                return;
+            }
+
+            // Kiểm tra thông tin đăng nhập từ Firebase để xác thực username và email
+            databaseReference.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    boolean isUserValid = false;
+                    String userIdToUpdate = "";
+
+                    // Lặp qua các bản ghi trong Firebase để kiểm tra username và email
+                    for (DataSnapshot snapshot : task.getResult().getChildren()) {
+                        String dbUsername = snapshot.child("username").getValue(String.class);
+                        String dbEmail = snapshot.child("email").getValue(String.class);
+
+                        if (username.equals(dbUsername) && email.equals(dbEmail)) {
+                            isUserValid = true;
+                            userIdToUpdate = snapshot.getKey(); // Lấy key (ID) của người dùng
+                            break;
+                        }
+                    }
+
+                    if (isUserValid) {
+                        // Cập nhật mật khẩu mới trong Firebase
+                        databaseReference.child(userIdToUpdate).child("password").setValue(newPassword)
+                                .addOnCompleteListener(updateTask -> {
+                                    if (updateTask.isSuccessful()) {
+                                        Toast.makeText(ForgotPassword.this, "Password reset successfully!", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(ForgotPassword.this, SignIn.class);
+                                        startActivity(intent);
+                                        finish(); // Đóng ForgotPasswordActivity
+                                    } else {
+                                        Toast.makeText(ForgotPassword.this, "Failed to reset password. Please try again.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    } else {
+                        Toast.makeText(ForgotPassword.this, "Invalid username or email.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(ForgotPassword.this, "Failed to connect to the database.", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 }

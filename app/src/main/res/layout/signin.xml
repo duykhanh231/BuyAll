@@ -57,21 +57,52 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:hint="Username or Email"
         android:layout_marginTop="16dp"
         android:padding="12dp"
         android:background="@drawable/edittext_background"
         android:inputType="text"/>
 
-    <EditText
-        android:id="@+id/password"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:layout_marginTop="8dp"
-        android:padding="12dp"
-        android:background="@drawable/edittext_background"
-        android:inputType="textPassword"/>
+        android:layout_marginTop="8dp">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:padding="12dp"
+            android:background="@drawable/edittext_background"
+            android:inputType="textPassword"/>
+
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:id="@+id/show_password_icon_off"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_eye_off"
+                android:contentDescription="Show Password"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/show_password_icon_on"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:layout_gravity="center"
+                android:contentDescription="Show Password"
+                android:src="@drawable/ic_eye_on"
+                android:visibility="gone"/>
+
+        </FrameLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="366dp"
