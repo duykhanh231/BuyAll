@@ -278,6 +278,46 @@
                     android:contentDescription="Chevron Right"
                     android:src="@drawable/chevronright" />
             </LinearLayout>
+
+            <!-- Khoảng cách ngăn cách phần Logout -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="#FFFFFF" />
+
+            <!-- Nút Logout -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="onLogoutClick">
+
+                <!-- Biểu tượng Logout -->
+
+                <!-- Chữ Logout -->
+                <TextView
+                    android:id="@+id/tv_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Log out"
+                    android:textColor="#000000"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img_logout_icon"
+                    android:layout_width="36dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Logout Icon"
+                    android:src="@drawable/logout_icon" />
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
