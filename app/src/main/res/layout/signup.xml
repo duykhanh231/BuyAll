@@ -73,7 +73,7 @@
         android:background="@drawable/edittext_background"
         android:inputType="textEmailAddress"/>
     <EditText
-        android:id="@+id/first_name"
+        android:id="@+id/full_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Full name"
