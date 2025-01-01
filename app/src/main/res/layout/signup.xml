@@ -56,61 +56,125 @@
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Username"
+        android:layout_height="60dp"
         android:layout_marginTop="10dp"
-        android:padding="12dp"
         android:background="@drawable/edittext_background"
-        android:inputType="text"/>
+        android:hint="Username"
+        android:inputType="text"
+        android:padding="12dp" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
+        android:layout_height="60dp"
         android:layout_marginTop="8dp"
-        android:padding="12dp"
         android:background="@drawable/edittext_background"
-        android:inputType="textEmailAddress"/>
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="12dp" />
+
     <EditText
         android:id="@+id/full_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Full name"
+        android:layout_height="60dp"
         android:layout_marginTop="8dp"
-        android:padding="12dp"
         android:background="@drawable/edittext_background"
-        android:inputType="text"/>
+        android:hint="Full name"
+        android:inputType="text"
+        android:padding="12dp" />
 
     <EditText
         android:id="@+id/phone_number"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_background"
         android:hint="Phone Number"
-        android:layout_marginTop="8dp"
-        android:padding="12dp"
-        android:background="@drawable/edittext_background"
-        android:inputType="phone"/>
+        android:inputType="phone"
+        android:padding="12dp" />
 
-    <EditText
-        android:id="@+id/password"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
+        android:layout_height="60dp"
         android:layout_marginTop="8dp"
-        android:padding="12dp"
-        android:background="@drawable/edittext_background"
-        android:inputType="textPassword"/>
+        android:background="@drawable/edittext_background">
 
-    <EditText
-        android:id="@+id/confirm_password"
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="351dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="12dp" />
+
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:id="@+id/show_password_icon_off"
+                android:layout_width="31dp"
+                android:layout_height="21dp"
+                android:layout_gravity="center"
+                android:contentDescription="Show Password"
+                android:src="@drawable/ic_eye_off" />
+
+            <ImageView
+                android:id="@+id/show_password_icon_on"
+                android:layout_width="31dp"
+                android:layout_height="21dp"
+                android:layout_gravity="center"
+                android:contentDescription="Show Password"
+                android:src="@drawable/ic_eye_on"
+                android:visibility="gone"/>
+        </FrameLayout>
+    </FrameLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Confirm Password"
+        android:layout_height="60dp"
         android:layout_marginTop="8dp"
-        android:padding="12dp"
-        android:background="@drawable/edittext_background"
-        android:inputType="textPassword"/>
+        android:background="@drawable/edittext_background">
+
+        <EditText
+            android:id="@+id/confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Confirm Password"
+            android:padding="12dp"
+            android:inputType="textPassword"
+            android:background="@null"/>
+
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:id="@+id/show_confirm_password_icon_off"
+                android:layout_width="31dp"
+                android:layout_height="21dp"
+                android:layout_gravity="center"
+                android:contentDescription="Show Password"
+                android:src="@drawable/ic_eye_off" />
+
+            <ImageView
+                android:id="@+id/show_confirm_password_icon_on"
+                android:layout_width="31dp"
+                android:layout_height="21dp"
+                android:layout_gravity="center"
+                android:contentDescription="Hide Password"
+                android:src="@drawable/ic_eye_on"
+                android:visibility="gone" />
+        </FrameLayout>
+    </FrameLayout>
+
+
 
     <Button
         android:id="@+id/sign_up_button"

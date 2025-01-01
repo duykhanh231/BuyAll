@@ -3,8 +3,12 @@ package com.group9.buyall;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +27,7 @@ public class ForgotPassword extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private EditText usernameEditText, emailEditText, newPasswordEditText, confirmNewPasswordEditText;
     private Button resetPasswordButton;
+    private ImageView showPasswordIconOff, showPasswordIconOn, showConfirmPasswordIconOff, showConfirmPasswordIconOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +45,43 @@ public class ForgotPassword extends AppCompatActivity {
         confirmNewPasswordEditText = findViewById(R.id.confirm_new_password);
         resetPasswordButton = findViewById(R.id.reset_password_button);
 
+        // Ánh xạ các biểu tượng con mắt
+        showPasswordIconOff = findViewById(R.id.show_password_icon_off);
+        showPasswordIconOn = findViewById(R.id.show_password_icon_on);
+        showConfirmPasswordIconOff = findViewById(R.id.show_confirm_password_icon_off);
+        showConfirmPasswordIconOn = findViewById(R.id.show_confirm_password_icon_on);
+
         // Cài đặt padding cho bố cục chính
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.Forgotpd), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        // Xử lý sự kiện hiển thị/ẩn mật khẩu trường "New Password"
+        showPasswordIconOff.setOnClickListener(v -> {
+            newPasswordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            showPasswordIconOff.setVisibility(View.GONE);
+            showPasswordIconOn.setVisibility(View.VISIBLE);
+        });
+
+        showPasswordIconOn.setOnClickListener(v -> {
+            newPasswordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            showPasswordIconOn.setVisibility(View.GONE);
+            showPasswordIconOff.setVisibility(View.VISIBLE);
+        });
+
+        // Xử lý sự kiện hiển thị/ẩn mật khẩu trường "Confirm New Password"
+        showConfirmPasswordIconOff.setOnClickListener(v -> {
+            confirmNewPasswordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            showConfirmPasswordIconOff.setVisibility(View.GONE);
+            showConfirmPasswordIconOn.setVisibility(View.VISIBLE);
+        });
+
+        showConfirmPasswordIconOn.setOnClickListener(v -> {
+            confirmNewPasswordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            showConfirmPasswordIconOn.setVisibility(View.GONE);
+            showConfirmPasswordIconOff.setVisibility(View.VISIBLE);
         });
 
         // Sự kiện khi nhấn vào "Back to Sign In"

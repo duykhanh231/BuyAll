@@ -3,9 +3,13 @@ package com.group9.buyall;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,15 +33,21 @@ public class SignUp extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
-        // Ánh xạ các trường nhập liệu và nút Sign Up
+        // Ánh xạ các trường nhập liệu và nút
         EditText fullNameEditText = findViewById(R.id.full_name);
-        EditText usernameEditText = findViewById(R.id.username); // thêm trường username
+        EditText usernameEditText = findViewById(R.id.username);
         EditText emailEditText = findViewById(R.id.email);
-        EditText phoneNumberEditText = findViewById(R.id.phone_number); // thêm trường phone number
+        EditText phoneNumberEditText = findViewById(R.id.phone_number);
         EditText passwordEditText = findViewById(R.id.password);
         EditText confirmPasswordEditText = findViewById(R.id.confirm_password);
         Button signUpButton = findViewById(R.id.sign_up_button);
         TextView signInText = findViewById(R.id.sign_in_text);
+
+        // Ánh xạ biểu tượng mắt
+        ImageView showPasswordIconOff = findViewById(R.id.show_password_icon_off);
+        ImageView showPasswordIconOn = findViewById(R.id.show_password_icon_on);
+        ImageView showConfirmPasswordIconOff = findViewById(R.id.show_confirm_password_icon_off);
+        ImageView showConfirmPasswordIconOn = findViewById(R.id.show_confirm_password_icon_on);
 
         // Chuyển sang màn hình Sign In
         signInText.setOnClickListener(v -> {
@@ -46,12 +56,38 @@ public class SignUp extends AppCompatActivity {
             finish();
         });
 
+        // Xử lý hiển thị/ẩn mật khẩu cho trường Password
+        showPasswordIconOff.setOnClickListener(v -> {
+            passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            showPasswordIconOff.setVisibility(View.GONE);
+            showPasswordIconOn.setVisibility(View.VISIBLE);
+        });
+
+        showPasswordIconOn.setOnClickListener(v -> {
+            passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            showPasswordIconOn.setVisibility(View.GONE);
+            showPasswordIconOff.setVisibility(View.VISIBLE);
+        });
+
+        // Xử lý hiển thị/ẩn mật khẩu cho trường Confirm Password
+        showConfirmPasswordIconOff.setOnClickListener(v -> {
+            confirmPasswordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            showConfirmPasswordIconOff.setVisibility(View.GONE);
+            showConfirmPasswordIconOn.setVisibility(View.VISIBLE);
+        });
+
+        showConfirmPasswordIconOn.setOnClickListener(v -> {
+            confirmPasswordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            showConfirmPasswordIconOn.setVisibility(View.GONE);
+            showConfirmPasswordIconOff.setVisibility(View.VISIBLE);
+        });
+
         // Xử lý đăng ký khi người dùng bấm nút Sign Up
         signUpButton.setOnClickListener(v -> {
             String fullName = fullNameEditText.getText().toString().trim();
-            String username = usernameEditText.getText().toString().trim(); // Lấy giá trị từ trường username
+            String username = usernameEditText.getText().toString().trim();
             String email = emailEditText.getText().toString().trim();
-            String phoneNumber = phoneNumberEditText.getText().toString().trim(); // Lấy giá trị từ trường phone number
+            String phoneNumber = phoneNumberEditText.getText().toString().trim();
             String password = passwordEditText.getText().toString().trim();
             String confirmPassword = confirmPasswordEditText.getText().toString().trim();
 
@@ -70,6 +106,11 @@ public class SignUp extends AppCompatActivity {
                 return;
             }
 
+            if (!isPasswordComplex(password)) {
+                passwordEditText.setError("Password must have at least 6 characters, including an uppercase letter, a lowercase letter, a number, and a special character!");
+                return;
+            }
+
             if (!password.equals(confirmPassword)) {
                 confirmPasswordEditText.setError("Passwords do not match!");
                 return;
@@ -80,7 +121,6 @@ public class SignUp extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
-                                // Gửi email xác minh
                                 user.sendEmailVerification()
                                         .addOnCompleteListener(emailTask -> {
                                             if (emailTask.isSuccessful()) {
@@ -90,7 +130,6 @@ public class SignUp extends AppCompatActivity {
                                                     while (true) {
                                                         user.reload();
                                                         if (user.isEmailVerified()) {
-                                                            // Lưu tất cả thông tin người dùng vào Realtime Database
                                                             saveUserToDatabase(user.getUid(), fullName, username, email, phoneNumber, password);
                                                             runOnUiThread(() -> {
                                                                 Toast.makeText(SignUp.this, "Email verified successfully!", Toast.LENGTH_SHORT).show();
@@ -101,7 +140,7 @@ public class SignUp extends AppCompatActivity {
                                                             break;
                                                         }
                                                         try {
-                                                            Thread.sleep(3000); // Kiểm tra mỗi 3 giây
+                                                            Thread.sleep(2000); // Kiểm tra mỗi 3 giây
                                                         } catch (InterruptedException e) {
                                                             e.printStackTrace();
                                                         }
@@ -110,7 +149,7 @@ public class SignUp extends AppCompatActivity {
 
                                             } else {
                                                 Toast.makeText(SignUp.this, "Failed to send verification email. Please try again.", Toast.LENGTH_SHORT).show();
-                                                user.delete(); // Xóa tài khoản nếu email không gửi thành công
+                                                user.delete();
                                             }
                                         });
                             }
@@ -121,7 +160,11 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-    // Lưu thông tin người dùng vào Realtime Database
+    private boolean isPasswordComplex(String password) {
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$";
+        return password.matches(passwordPattern);
+    }
+
     private void saveUserToDatabase(String userId, String fullName, String username, String email, String phoneNumber, String password) {
         User user = new User(userId, fullName, username, email, phoneNumber, password);
         databaseReference.child(userId).setValue(user)
