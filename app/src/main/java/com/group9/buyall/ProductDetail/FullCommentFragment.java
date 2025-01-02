@@ -1,6 +1,5 @@
 package com.group9.buyall.ProductDetail;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -10,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -24,8 +22,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.group9.buyall.CartFragment;
-import com.group9.buyall.ProductList.CpuIntel;
 import com.group9.buyall.R;
 
 import java.util.ArrayList;
@@ -38,7 +34,6 @@ public class FullCommentFragment extends Fragment {
     private RecyclerView rcvFULLCOMMENT;
     private ProductDetailCommentAdapter productDetailCommentAdapter;
     private TextView tvCOOMENTSAO, tvbsBOLOC, tvbsDONGY, tvTATCA;
-    private Context context;
     private RadioButton rb1,rb2,rb3,rb4,rb5;
     private ArrayList<Integer> arrayList;
 
@@ -173,36 +168,28 @@ public class FullCommentFragment extends Fragment {
         tvTATCA.setBackgroundColor(Color.parseColor("#D3D3D3"));
     }
 
-    private void SortTheListFromRB(int listsize){
+    private void SortTheListFromRB(){
         MyListProductDetailComment.clear();
         MyListProductDetailComment.addAll(secondProductDetailComment);
         Iterator<ProductDetailComment> iterator = MyListProductDetailComment.iterator();
         while (iterator.hasNext()) {
             ProductDetailComment productDetailComment = iterator.next();
-            if (listsize == 1) {
-                if (!(productDetailComment.getRating() == (arrayList.get(0)))){
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (productDetailComment.getRating() == arrayList.get(i)) {
+                    isValid = true;
+                    break;
                 }
-            } else if (listsize == 2) {
-                if (!(productDetailComment.getRating() == (arrayList.get(0)) || (productDetailComment.getRating() == (arrayList.get(1))))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 3) {
-                if (!(productDetailComment.getRating() == (arrayList.get(0)) || (productDetailComment.getRating() == (arrayList.get(1))) || (productDetailComment.getRating() == (arrayList.get(2))))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 4) {
-                if (!(productDetailComment.getRating() == (arrayList.get(0)) || (productDetailComment.getRating() == (arrayList.get(1))) || (productDetailComment.getRating() == (arrayList.get(2)))|| (productDetailComment.getRating() == (arrayList.get(3))))) {
-                    iterator.remove();
-                }
+            }
+            if (!isValid) {
+                iterator.remove();
             }
         }
     }
 
     private void GetTheList(){
         if (arrayList.isEmpty()) {return;}
-            int jack = arrayList.size();
-            SortTheListFromRB(jack);
+            SortTheListFromRB();
         }
     }
 

@@ -37,7 +37,7 @@ public class CpuAMDFilterFragment extends Fragment {
     private EditText scrollpricerangeMAX, scrollpricerangeMIN;
     private Button Xacnhanfilterbtn,Xaclaplaifilterbtn;
     private ImageView imageView;
-    List<CpuIntel> cpuIntelslist;
+    List<CpuIntel> cpuIntelslist,cpuIntelslist2;
     ArrayList<String> productlinelist,generationlist,socketlist;
     private Integer Rate;
     ArrayList<Integer> arrayList;
@@ -53,6 +53,7 @@ public class CpuAMDFilterFragment extends Fragment {
         generationlist = new ArrayList<>();
         socketlist = new ArrayList<>();
         arrayList = new ArrayList<>();
+        cpuIntelslist2 = new ArrayList<>();
         Rate = 0;
         Xacnhanfilterbtn = view.findViewById(R.id.btnscrollXACNHAN);
         Xaclaplaifilterbtn = view.findViewById(R.id.btnscrollXACLAPLAI);
@@ -186,13 +187,13 @@ public class CpuAMDFilterFragment extends Fragment {
             }
             if (textView == tvscrollprice0to100k) {
                 scrollpricerangeMIN.setText("0");
-                scrollpricerangeMAX.setText("100000");
+                scrollpricerangeMAX.setText("10000000");
                 resetPriceRangeTextViewColors();
                 textView.setTextColor(Color.RED);
                 textView.setBackgroundResource(R.drawable.border_textview_red);
             } else {
-                scrollpricerangeMIN.setText("100000");
-                scrollpricerangeMAX.setText("200000");
+                scrollpricerangeMIN.setText("10000000");
+                scrollpricerangeMAX.setText("20000000");
                 resetPriceRangeTextViewColors();
                 textView.setTextColor(Color.RED);
                 textView.setBackgroundResource(R.drawable.border_textview_red);
@@ -405,63 +406,59 @@ public class CpuAMDFilterFragment extends Fragment {
         resetData();
     }
 
-    private void SortTheListFromPRODUCTLINE(int listsize){
+    private void SortTheListFromPRODUCTLINE(int listsize) {
         Iterator<CpuIntel> iterator = cpuIntelslist.iterator();
         while (iterator.hasNext()) {
             CpuIntel cpuIntel = iterator.next();
-            if (listsize == 1) {
-                if (!cpuIntel.getProductLine().equals(productlinelist.get(0))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 2) {
-                if (!(cpuIntel.getProductLine().equals(productlinelist.get(0)) || cpuIntel.getProductLine().equals(productlinelist.get(1)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 3) {
-                if (!(cpuIntel.getProductLine().equals(productlinelist.get(0)) || cpuIntel.getProductLine().equals(productlinelist.get(1)) || cpuIntel.getProductLine().equals(productlinelist.get(2)))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (cpuIntel.getProductLine().equals(productlinelist.get(i))) {
+                    isValid = true;
+                    break;
                 }
             }
-
+            if (!isValid) {
+                iterator.remove();
+            }
         }
     }
 
-    private void SortTheListFromGENERATION(int listsize){
+
+    private void SortTheListFromGENERATION(int listsize) {
         Iterator<CpuIntel> iterator = cpuIntelslist.iterator();
         while (iterator.hasNext()) {
             CpuIntel cpuIntel = iterator.next();
-            if (listsize == 1) {
-                if (!cpuIntel.getGeneration().equals(generationlist.get(0))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 2) {
-                if (!(cpuIntel.getGeneration().equals(generationlist.get(0)) || cpuIntel.getGeneration().equals(generationlist.get(1)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 3) {
-                if (!(cpuIntel.getGeneration().equals(generationlist.get(0)) || cpuIntel.getGeneration().equals(generationlist.get(1)) || cpuIntel.getGeneration().equals(generationlist.get(2)))) {
-                    iterator.remove();
-                }
-            }else if (listsize == 4) {
-                if (!(cpuIntel.getGeneration().equals(generationlist.get(0)) || cpuIntel.getGeneration().equals(generationlist.get(1)) || cpuIntel.getGeneration().equals(generationlist.get(2))||cpuIntel.getGeneration().equals(generationlist.get(3)))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (cpuIntel.getGeneration().equals(generationlist.get(i))) {
+                    isValid = true;
+                    break;
                 }
             }
+            if (!isValid) {
+                iterator.remove();
+            }
         }
-
     }
 
-    private void SortTheListFromSOCKET(int listsize){
+
+    private void SortTheListFromSOCKET(int listsize) {
         Iterator<CpuIntel> iterator = cpuIntelslist.iterator();
         while (iterator.hasNext()) {
             CpuIntel cpuIntel = iterator.next();
-            if (listsize == 1) {
-                if (!cpuIntel.getSocket().equals(socketlist.get(0))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (cpuIntel.getSocket().equals(socketlist.get(i))) {
+                    isValid = true;
+                    break;
                 }
+            }
+            if (!isValid) {
+                iterator.remove();
             }
         }
     }
+
 
     private void SortTheListPRICERANGE(double min, double max) {
         Iterator<CpuIntel> iterator = cpuIntelslist.iterator();
@@ -482,7 +479,6 @@ public class CpuAMDFilterFragment extends Fragment {
             }
         }
     }
-
     private void resetData() {
         productlinelist.clear();
         generationlist.clear();
@@ -496,7 +492,7 @@ public class CpuAMDFilterFragment extends Fragment {
         resetPriceRangeTextViewColors();
         resetRateTextViewColors();
         resetCpuGenerationTextViewColors();
-        TaiListCpuAMD();
+        cpuIntelslist.addAll(cpuIntelslist2);
     }
     private void TaiListCpuAMD(){
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("CpuAMD");
@@ -515,6 +511,7 @@ public class CpuAMDFilterFragment extends Fragment {
                         CpuIntel cpuIntel = new CpuIntel(productID, ProductLine, Generation, Socket, Price, Rate);
                         cpuIntels1.add(cpuIntel);
                     }
+                    cpuIntelslist2.addAll(cpuIntels1);
                     cpuIntelslist.addAll(cpuIntels1);
                 } else {
                     Log.d("Firebase", "No products available.");

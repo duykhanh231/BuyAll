@@ -300,7 +300,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="0 - 100k"
+                            android:text="0 - 15 triệu"
                             android:layout_margin="5dp"
                             android:background="#D3D3D3"
                             android:gravity="center"
@@ -311,7 +311,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="100k - 200k"
+                            android:text="15 triệu - 30 triệu"
                             android:layout_margin="5dp"
                             android:background="#D3D3D3"
                             android:gravity="center"

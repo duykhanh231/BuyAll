@@ -37,7 +37,7 @@ public class VgaNvidiaFilterFragment extends Fragment {
     private EditText scrollpricerangeMAX, scrollpricerangeMIN;
     private Button Xacnhanfilterbtn,Xaclaplaifilterbtn;
     private ImageView imageView;
-    List<VgaNvidia> vgaNvidias;
+    List<VgaNvidia> vgaNvidias,vgaNvidias2;
     ArrayList<String> productlinelist,capacitylist,memorytypelist;
     private Integer Rate;
     ArrayList<Integer> arrayList;
@@ -53,6 +53,7 @@ public class VgaNvidiaFilterFragment extends Fragment {
         capacitylist = new ArrayList<>();
         memorytypelist = new ArrayList<>();
         arrayList = new ArrayList<>();
+        vgaNvidias2 = new ArrayList<>();
         Rate = 0;
 
         Xacnhanfilterbtn = view.findViewById(R.id.btnscrollXACNHAN);
@@ -201,13 +202,13 @@ public class VgaNvidiaFilterFragment extends Fragment {
             }
             if (textView == tvscrollprice0to100k) {
                 scrollpricerangeMIN.setText("0");
-                scrollpricerangeMAX.setText("100000");
+                scrollpricerangeMAX.setText("15000000");
                 resetPriceRangeTextViewColors();
                 textView.setTextColor(Color.RED);
                 textView.setBackgroundResource(R.drawable.border_textview_red);
             } else {
-                scrollpricerangeMIN.setText("100000");
-                scrollpricerangeMAX.setText("200000");
+                scrollpricerangeMIN.setText("15000000");
+                scrollpricerangeMAX.setText("30000000");
                 resetPriceRangeTextViewColors();
                 textView.setTextColor(Color.RED);
                 textView.setBackgroundResource(R.drawable.border_textview_red);
@@ -434,88 +435,58 @@ public class VgaNvidiaFilterFragment extends Fragment {
         ((ProductList) getActivity()).UpdateListProductAdapter(arrayList);
         resetData();
     }
-
-    private void SortTheListFromCAPICITY(int listsize){
+    private void SortTheListFromCAPICITY(int listsize) {
         Iterator<VgaNvidia> iterator = vgaNvidias.iterator();
         while (iterator.hasNext()) {
             VgaNvidia vgaNvidia = iterator.next();
-            if (listsize == 1) {
-                if (!vgaNvidia.getCapacity().equals(capacitylist.get(0))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 2) {
-                if (!(vgaNvidia.getCapacity().equals(capacitylist.get(0)) || vgaNvidia.getCapacity().equals(capacitylist.get(1)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 3) {
-                if (!(vgaNvidia.getCapacity().equals(capacitylist.get(0)) || vgaNvidia.getCapacity().equals(capacitylist.get(1)) || vgaNvidia.getCapacity().equals(capacitylist.get(2)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 4) {
-                if (!(vgaNvidia.getCapacity().equals(capacitylist.get(0)) || vgaNvidia.getCapacity().equals(capacitylist.get(1)) || vgaNvidia.getCapacity().equals(capacitylist.get(2)) || vgaNvidia.getCapacity().equals(capacitylist.get(3)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 5) {
-                if (!(vgaNvidia.getCapacity().equals(capacitylist.get(0)) || vgaNvidia.getCapacity().equals(capacitylist.get(1)) || vgaNvidia.getCapacity().equals(capacitylist.get(2)) || vgaNvidia.getCapacity().equals(capacitylist.get(3))|| vgaNvidia.getCapacity().equals(capacitylist.get(4)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 6) {
-                if (!(vgaNvidia.getCapacity().equals(capacitylist.get(0)) || vgaNvidia.getCapacity().equals(capacitylist.get(1)) || vgaNvidia.getCapacity().equals(capacitylist.get(2)) || vgaNvidia.getCapacity().equals(capacitylist.get(3))|| vgaNvidia.getCapacity().equals(capacitylist.get(4))|| vgaNvidia.getCapacity().equals(capacitylist.get(5)))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (vgaNvidia.getCapacity().equals(capacitylist.get(i))) {
+                    isValid = true;
+                    break;
                 }
             }
-
-        }
-    }
-
-    private void SortTheListFromMEMORYTYPE(int listsize){
-        Iterator<VgaNvidia> iterator = vgaNvidias.iterator();
-        while (iterator.hasNext()) {
-            VgaNvidia vgaNvidia = iterator.next();
-            if (listsize == 1) {
-                if (!vgaNvidia.getMemoryType().equals(memorytypelist.get(0))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 2) {
-                if (!(vgaNvidia.getMemoryType().equals(memorytypelist.get(0)) || vgaNvidia.getMemoryType().equals(memorytypelist.get(1)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 3) {
-                if (!(vgaNvidia.getMemoryType().equals(memorytypelist.get(0)) || vgaNvidia.getMemoryType().equals(memorytypelist.get(1)) || vgaNvidia.getMemoryType().equals(memorytypelist.get(2)))) {
-                    iterator.remove();
-                }
+            if (!isValid) {
+                iterator.remove();
             }
         }
     }
 
-    private void SortTheListFromPRODUCTLINE(int listsize){
+
+    private void SortTheListFromMEMORYTYPE(int listsize) {
         Iterator<VgaNvidia> iterator = vgaNvidias.iterator();
         while (iterator.hasNext()) {
             VgaNvidia vgaNvidia = iterator.next();
-            if (listsize == 1) {
-                if (!vgaNvidia.getProductLine().equals(productlinelist.get(0))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 2) {
-                if (!(vgaNvidia.getProductLine().equals(productlinelist.get(0)) || vgaNvidia.getProductLine().equals(productlinelist.get(1)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 3) {
-                if (!(vgaNvidia.getProductLine().equals(productlinelist.get(0)) || vgaNvidia.getProductLine().equals(productlinelist.get(1)) || vgaNvidia.getProductLine().equals(productlinelist.get(2)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 4) {
-                if (!(vgaNvidia.getProductLine().equals(productlinelist.get(0)) || vgaNvidia.getProductLine().equals(productlinelist.get(1)) || vgaNvidia.getProductLine().equals(productlinelist.get(2)) || vgaNvidia.getProductLine().equals(productlinelist.get(3)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 5) {
-                if (!(vgaNvidia.getProductLine().equals(productlinelist.get(0)) || vgaNvidia.getProductLine().equals(productlinelist.get(1)) || vgaNvidia.getProductLine().equals(productlinelist.get(2)) || vgaNvidia.getProductLine().equals(productlinelist.get(3))|| vgaNvidia.getProductLine().equals(productlinelist.get(4)))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (vgaNvidia.getMemoryType().equals(memorytypelist.get(i))) {
+                    isValid = true;
+                    break;
                 }
             }
-
+            if (!isValid) {
+                iterator.remove();
+            }
         }
     }
+
+    private void SortTheListFromPRODUCTLINE(int listsize) {
+        Iterator<VgaNvidia> iterator = vgaNvidias.iterator();
+        while (iterator.hasNext()) {
+            VgaNvidia vgaNvidia = iterator.next();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (vgaNvidia.getProductLine().equals(productlinelist.get(i))) {
+                    isValid = true;
+                    break;
+                }
+            }
+            if (!isValid) {
+                iterator.remove();
+            }
+        }
+    }
+
 
     private void SortTheListPRICERANGE(double min, double max) {
         Iterator<VgaNvidia> iterator = vgaNvidias.iterator();
@@ -536,7 +507,6 @@ public class VgaNvidiaFilterFragment extends Fragment {
             }
         }
     }
-
     private void resetData() {
         productlinelist.clear();
         memorytypelist.clear();
@@ -550,7 +520,7 @@ public class VgaNvidiaFilterFragment extends Fragment {
         resetPriceRangeTextViewColors();
         resetRateTextViewColors();
         resetMemoryTypeTextViewColors();
-        TaiListVgaNvidial();
+        vgaNvidias.addAll(vgaNvidias2);
     }
 
     private void TaiListVgaNvidial(){
@@ -570,6 +540,7 @@ public class VgaNvidiaFilterFragment extends Fragment {
                         VgaNvidia vgaNvidia = new VgaNvidia(productID, Capacity, Memory, Productl, Price, Rate);
                         vgaNvidias1.add(vgaNvidia);
                     }
+                    vgaNvidias2.addAll(vgaNvidias1);
                     vgaNvidias.addAll(vgaNvidias1);
                 } else {
                     Log.d("Firebase", "No products available.");

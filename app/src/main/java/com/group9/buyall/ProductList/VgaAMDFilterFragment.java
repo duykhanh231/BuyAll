@@ -36,7 +36,7 @@ public class VgaAMDFilterFragment extends Fragment {
     private EditText scrollpricerangeMAX, scrollpricerangeMIN;
     private Button Xacnhanfilterbtn,Xaclaplaifilterbtn;
     private ImageView imageView;
-    List<VgaAMD> vgaAMDS;
+    List<VgaAMD> vgaAMDS,vgaAMDS2;
     ArrayList<String> productlinelist,capacitylist;
     private Integer Rate;
     ArrayList<Integer> arrayList;
@@ -51,6 +51,7 @@ public class VgaAMDFilterFragment extends Fragment {
         productlinelist = new ArrayList<>();
         capacitylist = new ArrayList<>();
         arrayList = new ArrayList<>();
+        vgaAMDS2 = new ArrayList<>();
         Rate = 0;
 
         Xacnhanfilterbtn = view.findViewById(R.id.btnscrollXACNHAN);
@@ -172,13 +173,13 @@ public class VgaAMDFilterFragment extends Fragment {
             }
             if (textView == tvscrollprice0to100k) {
                 scrollpricerangeMIN.setText("0");
-                scrollpricerangeMAX.setText("100000");
+                scrollpricerangeMAX.setText("15000000");
                 resetPriceRangeTextViewColors();
                 textView.setTextColor(Color.RED);
                 textView.setBackgroundResource(R.drawable.border_textview_red);
             } else {
-                scrollpricerangeMIN.setText("100000");
-                scrollpricerangeMAX.setText("200000");
+                scrollpricerangeMIN.setText("15000000");
+                scrollpricerangeMAX.setText("30000000");
                 resetPriceRangeTextViewColors();
                 textView.setTextColor(Color.RED);
                 textView.setBackgroundResource(R.drawable.border_textview_red);
@@ -306,7 +307,7 @@ public class VgaAMDFilterFragment extends Fragment {
 
         if (!capacitylist.isEmpty()) {
             int jack = capacitylist.size();
-            SortTheListFromCAPICITY(jack);
+            SortTheListFromCAPACITY(jack);
         }
 
         if (!productlinelist.isEmpty()) {
@@ -332,33 +333,41 @@ public class VgaAMDFilterFragment extends Fragment {
         resetData();
     }
 
-    private void SortTheListFromCAPICITY(int listsize) {
+    private void SortTheListFromCAPACITY(int listsize) {
         Iterator<VgaAMD> iterator = vgaAMDS.iterator();
         while (iterator.hasNext()) {
             VgaAMD vgaAMD = iterator.next();
-            if (listsize == 1) {
-                if (!vgaAMD.getCapacity().equals(capacitylist.get(0))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (vgaAMD.getCapacity().equals(capacitylist.get(i))) {
+                    isValid = true;
+                    break;
                 }
-            } else if (listsize == 2) {
-                if (!(vgaAMD.getCapacity().equals(capacitylist.get(0)) || vgaAMD.getCapacity().equals(capacitylist.get(1)))) {
-                    iterator.remove();
-                }
+            }
+            if (!isValid) {
+                iterator.remove();
             }
         }
     }
 
-    private void SortTheListFromPRODUCTLINE(int listsize){
+
+    private void SortTheListFromPRODUCTLINE(int listsize) {
         Iterator<VgaAMD> iterator = vgaAMDS.iterator();
         while (iterator.hasNext()) {
             VgaAMD vgaAMD = iterator.next();
-            if (listsize == 1) {
-                if (!vgaAMD.getProductLine().equals(productlinelist.get(0))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (vgaAMD.getProductLine().equals(productlinelist.get(i))) {
+                    isValid = true;
+                    break;
                 }
+            }
+            if (!isValid) {
+                iterator.remove();
             }
         }
     }
+
     private void SortTheListPRICERANGE(double min, double max) {
         Iterator<VgaAMD> iterator = vgaAMDS.iterator();
         while (iterator.hasNext()) {
@@ -390,7 +399,7 @@ public class VgaAMDFilterFragment extends Fragment {
         resetVGALineTextViewColors();
         resetPriceRangeTextViewColors();
         resetRateTextViewColors();
-        TaiListVgaAMD();
+        vgaAMDS.addAll(vgaAMDS2);
     }
     private void TaiListVgaAMD(){
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("VgaAMD");
@@ -408,6 +417,7 @@ public class VgaAMDFilterFragment extends Fragment {
                         VgaAMD vgaAMD = new VgaAMD(productID, Capacity, Productl, Price, Rate);
                         vgaAMDS1.add(vgaAMD);
                     }
+                    vgaAMDS2.addAll(vgaAMDS1);
                     vgaAMDS.addAll(vgaAMDS1);
                 } else {
                     Log.d("Firebase", "No products available.");

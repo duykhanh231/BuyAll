@@ -39,7 +39,7 @@ public class RamFilterFragment extends Fragment {
     private Button Xacnhanfilterbtn, Xaclaplaifilterbtn;
     private ImageView imageView;
     private int Rate;
-    private List<Ram> rams;
+    private List<Ram> rams,rams2;
     private ArrayList<String> arrayListBRAND, arrayListMEMORYTYPE, arrayListCAPACITY,arrayListSUPPORT;
     private ArrayList<Integer> arrayList;
 
@@ -56,6 +56,7 @@ public class RamFilterFragment extends Fragment {
         arrayListCAPACITY = new ArrayList<>();
         arrayListSUPPORT = new ArrayList<>();
         arrayList = new ArrayList<>();
+        rams2 = new ArrayList<>();
         Rate = 0;
         imageView = view.findViewById(R.id.ivARROWTURNBACKALLFILTER);
 
@@ -197,13 +198,13 @@ public class RamFilterFragment extends Fragment {
             }
             if (textView == tvscrollprice0to100k) {
                 scrollpricerangeMIN.setText("0");
-                scrollpricerangeMAX.setText("100000");
+                scrollpricerangeMAX.setText("5000000");
                 resetPriceRangeTextViewColors();
                 textView.setTextColor(Color.RED);
                 textView.setBackgroundResource(R.drawable.border_textview_red);
             } else {
-                scrollpricerangeMIN.setText("100000");
-                scrollpricerangeMAX.setText("200000");
+                scrollpricerangeMIN.setText("5000000");
+                scrollpricerangeMAX.setText("10000000");
                 resetPriceRangeTextViewColors();
                 textView.setTextColor(Color.RED);
                 textView.setBackgroundResource(R.drawable.border_textview_red);
@@ -475,65 +476,55 @@ public class RamFilterFragment extends Fragment {
         Iterator<Ram> iterator = rams.iterator();
         while (iterator.hasNext()) {
             Ram ram = iterator.next();
-            if (listsize == 1) {
-                if (!ram.getCapacity().equals(arrayListCAPACITY.get(0))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (ram.getCapacity().equals(arrayListCAPACITY.get(i))) {
+                    isValid = true;
+                    break;
                 }
-            } else if (listsize == 2) {
-                if (!(ram.getCapacity().equals(arrayListCAPACITY.get(0)) || ram.getCapacity().equals(arrayListCAPACITY.get(1)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 3) {
-                if (!(ram.getCapacity().equals(arrayListCAPACITY.get(0)) || ram.getCapacity().equals(arrayListCAPACITY.get(1)) || ram.getCapacity().equals(arrayListCAPACITY.get(2)))) {
-                    iterator.remove();
-                }
+            }
+            if (!isValid) {
+                iterator.remove();
             }
         }
     }
+
 
     private void SortTheListFromMEMORYTYPE(int listsize) {
         Iterator<Ram> iterator = rams.iterator();
         while (iterator.hasNext()) {
             Ram ram = iterator.next();
-            if (listsize == 1) {
-                if (!ram.getRamType().equals(arrayListMEMORYTYPE.get(0))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (ram.getRamType().equals(arrayListMEMORYTYPE.get(i))) {
+                    isValid = true;
+                    break;
                 }
-            } else if (listsize == 2) {
-                if (!(ram.getRamType().equals(arrayListMEMORYTYPE.get(0)) || ram.getRamType().equals(arrayListMEMORYTYPE.get(1)))) {
-                    iterator.remove();
-                }
+            }
+            if (!isValid) {
+                iterator.remove();
             }
         }
     }
+
 
     private void SortTheListFromBRAND(int listsize) {
         Iterator<Ram> iterator = rams.iterator();
         while (iterator.hasNext()) {
             Ram ram = iterator.next();
-            if (listsize == 1) {
-                if (!ram.getBrand().equals(arrayListBRAND.get(0))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (ram.getBrand().equals(arrayListBRAND.get(i))) {
+                    isValid = true;
+                    break;
                 }
-            } else if (listsize == 2) {
-                if (!(ram.getBrand().equals(arrayListBRAND.get(0)) || ram.getBrand().equals(arrayListBRAND.get(1)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 3) {
-                if (!(ram.getBrand().equals(arrayListBRAND.get(0)) || ram.getBrand().equals(arrayListBRAND.get(1)) || ram.getBrand().equals(arrayListBRAND.get(2)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 4) {
-                if (!(ram.getBrand().equals(arrayListBRAND.get(0)) || ram.getBrand().equals(arrayListBRAND.get(1)) || ram.getBrand().equals(arrayListBRAND.get(2)) || ram.getBrand().equals(arrayListBRAND.get(3)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 5) {
-                if (!(ram.getBrand().equals(arrayListBRAND.get(0)) || ram.getBrand().equals(arrayListBRAND.get(1)) || ram.getBrand().equals(arrayListBRAND.get(2)) || ram.getBrand().equals(arrayListBRAND.get(3)) || ram.getBrand().equals(arrayListBRAND.get(4)))) {
-                    iterator.remove();
-                }
+            }
+            if (!isValid) {
+                iterator.remove();
             }
         }
     }
+
 
     private  void SortTheListFromSUPPORT(int listsize){
         Iterator<Ram> iterator = rams.iterator();
@@ -581,7 +572,7 @@ public class RamFilterFragment extends Fragment {
         resetRateTextViewColors();
         resetSupportTextViewColors();
         resetBrandTextViewColors();
-        TaiListRam();
+        rams.addAll(rams2);
     }
     private void TaiListRam(){
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Ram");
@@ -601,6 +592,7 @@ public class RamFilterFragment extends Fragment {
                         Ram ram = new Ram(productID, Capacity, RamType, productBrand, Support, Price, Rate);
                         rams1.add(ram);
                     }
+                    rams2.addAll(rams1);
                     rams.addAll(rams1);
                 } else {
                     Log.d("Firebase", "No products available.");

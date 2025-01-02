@@ -36,7 +36,7 @@ public class HDDSDDFilterFragment extends Fragment {
     private EditText scrollpricerangeMAX, scrollpricerangeMIN;
     private Button Xacnhanfilterbtn,Xaclaplaifilterbtn;
     private ImageView imageView;
-    private List<Disk> disks;
+    private List<Disk> disks,disks2;
     private ArrayList<String> TypeofDisk,Capacity;
     private Integer Rate;
     private ArrayList<Integer> arrayList;
@@ -52,6 +52,7 @@ public class HDDSDDFilterFragment extends Fragment {
         TypeofDisk = new ArrayList<>();
         Capacity = new ArrayList<>();
         arrayList = new ArrayList<>();
+        disks2 = new ArrayList<>();
         Rate = 0;
         imageView = view.findViewById(R.id.ivARROWTURNBACKALLFILTER);
 
@@ -183,13 +184,13 @@ public class HDDSDDFilterFragment extends Fragment {
             }
             if (textView == tvscrollprice0to100k) {
                 scrollpricerangeMIN.setText("0");
-                scrollpricerangeMAX.setText("100000");
+                scrollpricerangeMAX.setText("5000000");
                 resetPriceRangeTextViewColors();
                 textView.setTextColor(Color.RED);
                 textView.setBackgroundResource(R.drawable.border_textview_red);
             } else {
-                scrollpricerangeMIN.setText("100000");
-                scrollpricerangeMAX.setText("200000");
+                scrollpricerangeMIN.setText("5000000");
+                scrollpricerangeMAX.setText("10000000");
                 resetPriceRangeTextViewColors();
                 textView.setTextColor(Color.RED);
                 textView.setBackgroundResource(R.drawable.border_textview_red);
@@ -365,58 +366,35 @@ public class HDDSDDFilterFragment extends Fragment {
         Iterator<Disk> iterator = disks.iterator();
         while (iterator.hasNext()) {
             Disk disk = iterator.next();
-            if (listsize == 1) {
-                if (!disk.getDisktype().equals(TypeofDisk.get(0))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (disk.getDisktype().equals(TypeofDisk.get(i))) {
+                    isValid = true;
+                    break;
                 }
+            }
+            if (!isValid) {
+                iterator.remove();
             }
         }
     }
+
     private void SortTheListFromCapacity(int listsize) {
         Iterator<Disk> iterator = disks.iterator();
         while (iterator.hasNext()) {
             Disk disk = iterator.next();
-
-            if (listsize == 1) {
-                if (!disk.getCapacity().equals(Capacity.get(0))) {
-                    iterator.remove();
+            boolean isValid = false;
+            for (int i = 0; i < listsize; i++) {
+                if (disk.getCapacity().equals(Capacity.get(i))) {
+                    isValid = true;
+                    break;
                 }
-            } else if (listsize == 2) {
-                if (!(disk.getCapacity().equals(Capacity.get(0)) || disk.getCapacity().equals(Capacity.get(1)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 3) {
-                if (!(disk.getCapacity().equals(Capacity.get(0)) || disk.getCapacity().equals(Capacity.get(1)) || disk.getCapacity().equals(Capacity.get(2)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 4) {
-                if (!(disk.getCapacity().equals(Capacity.get(0)) || disk.getCapacity().equals(Capacity.get(1)) || disk.getCapacity().equals(Capacity.get(2)) || disk.getCapacity().equals(Capacity.get(3)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 5) {
-                if (!(disk.getCapacity().equals(Capacity.get(0)) || disk.getCapacity().equals(Capacity.get(1)) || disk.getCapacity().equals(Capacity.get(2)) || disk.getCapacity().equals(Capacity.get(3)) || disk.getCapacity().equals(Capacity.get(4)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 6) {
-                if (!(disk.getCapacity().equals(Capacity.get(0)) || disk.getCapacity().equals(Capacity.get(1)) || disk.getCapacity().equals(Capacity.get(2)) || disk.getCapacity().equals(Capacity.get(3)) || disk.getCapacity().equals(Capacity.get(4)) || disk.getCapacity().equals(Capacity.get(5)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 7) {
-                if (!(disk.getCapacity().equals(Capacity.get(0)) || disk.getCapacity().equals(Capacity.get(1)) || disk.getCapacity().equals(Capacity.get(2)) || disk.getCapacity().equals(Capacity.get(3)) || disk.getCapacity().equals(Capacity.get(4)) || disk.getCapacity().equals(Capacity.get(5)) || disk.getCapacity().equals(Capacity.get(6)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 8) {
-                if (!(disk.getCapacity().equals(Capacity.get(0)) || disk.getCapacity().equals(Capacity.get(1)) || disk.getCapacity().equals(Capacity.get(2)) || disk.getCapacity().equals(Capacity.get(3)) || disk.getCapacity().equals(Capacity.get(4)) || disk.getCapacity().equals(Capacity.get(5)) || disk.getCapacity().equals(Capacity.get(6)) || disk.getCapacity().equals(Capacity.get(7)))) {
-                    iterator.remove();
-                }
-            } else if (listsize == 9) {
-                if (!(disk.getCapacity().equals(Capacity.get(0)) || disk.getCapacity().equals(Capacity.get(1)) || disk.getCapacity().equals(Capacity.get(2)) || disk.getCapacity().equals(Capacity.get(3)) || disk.getCapacity().equals(Capacity.get(4)) || disk.getCapacity().equals(Capacity.get(5)) || disk.getCapacity().equals(Capacity.get(6)) || disk.getCapacity().equals(Capacity.get(7)) || disk.getCapacity().equals(Capacity.get(8)))) {
-                    iterator.remove();
-                }
+            }
+            if (!isValid) {
+                iterator.remove();
             }
         }
     }
-
     private void SortTheListPRICERANGE(double min, double max) {
         Iterator<Disk> iterator = disks.iterator();
         while (iterator.hasNext()) {
@@ -447,7 +425,7 @@ public class HDDSDDFilterFragment extends Fragment {
         resetHardDriveTypeTextViewColors();
         resetPriceRangeTextViewColors();
         resetRateTextViewColors();
-        TaiListDisk();
+        disks.addAll(disks2);
     }
 
     private void TaiListDisk(){
@@ -466,6 +444,7 @@ public class HDDSDDFilterFragment extends Fragment {
                         Disk disk = new Disk(productID, Capacity, DiskType, Price, Rate);
                         disks1.add(disk);
                     }
+                    disks2.addAll(disks1);
                     disks.addAll(disks1);
                 } else {
                     Log.d("Firebase", "No products available.");
