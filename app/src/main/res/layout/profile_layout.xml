@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
@@ -46,7 +44,6 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/profile_picture" />
 
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,6 +69,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/main_row"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -91,8 +89,8 @@
                     android:text="Your personal information"
                     android:textSize="14sp"
                     android:textColor="#757575" />
-
                 <ImageView
+                    android:id="@+id/chevron_icon"
                     android:layout_width="45dp"
                     android:layout_height="26dp"
                     android:layout_gravity="center_vertical"
@@ -101,11 +99,103 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/sub_items_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="#FFFFFF"
+                    android:elevation="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/sub_item_fullname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Fullname: Loading..."
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_edit" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="#FFFFFF"
+                    android:elevation="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/sub_item_phone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Phone: Loading..."
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_edit" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="#FFFFFF"
+                    android:elevation="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/sub_item_email"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Email: Loading..."
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_edit" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/my_orders_row"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp"
-                android:background="@drawable/item_border">
+                android:background="@drawable/item_border"
+                android:clickable="true"
+                android:onClick="toggleMyOrders">
 
                 <TextView
                     android:layout_width="0dp"
@@ -118,7 +208,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Already have 12 orders"
+                    android:text="You have 2 orders"
                     android:textSize="14sp"
                     android:textColor="#757575" />
 
@@ -131,11 +221,49 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/my_orders_sub_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="#FFFFFF"
+                    android:elevation="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Order #1"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_edit" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/shipping_addresses_row"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp"
-                android:background="@drawable/item_border">
+                android:background="@drawable/item_border"
+                android:clickable="true"
+                android:onClick="toggleShippingAddresses">
 
                 <TextView
                     android:layout_width="0dp"
@@ -148,9 +276,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3 addresses"
+                    android:text="You have 3 addresses"
                     android:textSize="14sp"
                     android:textColor="#757575" />
+
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="26dp"
@@ -160,11 +289,49 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/shipping_addresses_sub_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="#FFFFFF"
+                    android:elevation="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1234 Street Name"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_edit" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/payment_methods_row"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp"
-                android:background="@drawable/item_border">
+                android:background="@drawable/item_border"
+                android:clickable="true"
+                android:onClick="togglePaymentMethods">
 
                 <TextView
                     android:layout_width="0dp"
@@ -177,7 +344,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Visa **34"
+                    android:text="You have 1 payment method"
                     android:textSize="14sp"
                     android:textColor="#757575" />
 
@@ -190,6 +357,42 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/payment_methods_sub_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="#FFFFFF"
+                    android:elevation="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Credit Card #1234"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_edit" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/discounts_row"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -207,7 +410,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="You have special promocodes"
+                    android:text="You have 1 discount"
                     android:textSize="14sp"
                     android:textColor="#757575" />
 
@@ -220,6 +423,18 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/discounts_sub_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/my_reviews_row"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -237,11 +452,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reviews for 4 items"
+                    android:text="You have 2 reviews"
                     android:textSize="14sp"
                     android:textColor="#757575" />
 
                 <ImageView
+                    android:id="@+id/chevron_icon"
                     android:layout_width="45dp"
                     android:layout_height="26dp"
                     android:layout_gravity="center_vertical"
@@ -250,6 +466,19 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/my_reviews_sub_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/settings_row"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -264,13 +493,6 @@
                     android:textSize="16sp"
                     android:textColor="#000000" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Notifications, password"
-                    android:textSize="14sp"
-                    android:textColor="#757575" />
-
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="26dp"
@@ -279,14 +501,13 @@
                     android:src="@drawable/chevronright" />
             </LinearLayout>
 
-            <!-- Khoảng cách ngăn cách phần Logout -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="#FFFFFF" />
 
-            <!-- Nút Logout -->
             <LinearLayout
+                android:id="@+id/logout_row"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -296,9 +517,6 @@
                 android:background="?attr/selectableItemBackground"
                 android:onClick="onLogoutClick">
 
-                <!-- Biểu tượng Logout -->
-
-                <!-- Chữ Logout -->
                 <TextView
                     android:id="@+id/tv_logout"
                     android:layout_width="wrap_content"
@@ -316,8 +534,8 @@
                     android:layout_marginEnd="8dp"
                     android:contentDescription="Logout Icon"
                     android:src="@drawable/logout_icon" />
-
             </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -161,6 +161,7 @@ public class SignUp extends AppCompatActivity {
     }
 
     private boolean isPasswordComplex(String password) {
+        // Biểu thức chính quy kiểm tra độ phức tạp
         String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$";
         return password.matches(passwordPattern);
     }
