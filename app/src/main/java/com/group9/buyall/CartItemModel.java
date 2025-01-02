@@ -7,6 +7,8 @@ public class CartItemModel {
 
     private int type;
 
+    private int id;
+
     ///cart item
     private int productImage;
     private String productTitle;
@@ -93,8 +95,6 @@ public class CartItemModel {
         this.offersApplied = offersApplied;
     }
 
-    ///cart item
-    ///cart total
 
     private String totalItems;
     private String totalItemPrice;
@@ -159,7 +159,13 @@ public class CartItemModel {
         this.savedAmount = savedAmount;
     }
 
-    ///cart total
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
 
 }

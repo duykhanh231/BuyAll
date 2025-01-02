@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.group9.buyall.CartFragment;
+import com.group9.buyall.CartViewModel;
+import com.group9.buyall.Database.CartItemEntity;
 import com.group9.buyall.ProductList.Product_List;
 import com.group9.buyall.R;
 
@@ -37,6 +42,8 @@ public class ProductDetail extends AppCompatActivity {
     private ProductDetailAdapter productDetailAdapter;
     private ImageButton ibArrow,ibCart;
     private String ss = "R1";
+
+    private CartViewModel cartViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +54,17 @@ public class ProductDetail extends AppCompatActivity {
         MyProduct_List = new ArrayList<>();
         MyProduct_Description = new ArrayList<>();
         MyListProductDetailComment = new ArrayList<>();
+
+        cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+
+        LinearLayout addToCartLayout = findViewById(R.id.add_to_cart_layout);
+        addToCartLayout.setOnClickListener(v -> {
+            if (!MyProduct_List.isEmpty()) {
+                Product_List product = MyProduct_List.get(0);
+                addItemToCart(product);
+                Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         int productId = getIntent().getIntExtra("PRODUCT_ID", 0);
 
@@ -255,6 +273,23 @@ public class ProductDetail extends AppCompatActivity {
             return insets;
         });
     }
+
+    private void addItemToCart(Product_List product) {
+        CartItemEntity cartItem = new CartItemEntity();
+
+        // Convert Product_List to CartItemEntity
+        cartItem.setProductImage(R.drawable.applewatch);
+        cartItem.setProductTitle(product.getName());
+        cartItem.setProductPrice(String.format("%,.0f VND", product.getPrice()));
+        cartItem.setCuttedPrice(String.format("%,.0f VND", product.getPrice() * 1.2)); // Example original price
+        cartItem.setProductQuantity(1); // Default quantity
+        cartItem.setFreeCoupons(0); // Default free coupons
+        cartItem.setOffersApplied(0); // Default offers
+        cartItem.setCouponsApplied(0); // Default coupons
+
+        cartViewModel.insert(cartItem);
+    }
+
     private void showCartFragment() {
         CartFragment cartFragment = new CartFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

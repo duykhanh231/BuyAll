@@ -1,6 +1,7 @@
 package com.group9.buyall.Database;
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import java.util.List;
@@ -69,7 +70,12 @@ public class CartRepository {
 
         @Override
         protected Void doInBackground(final CartItemEntity... params) {
-            asyncTaskDao.removeItem(params[0]);
+            try {
+                asyncTaskDao.removeItem(params[0]);
+                Log.d("CartRepository", "Item deleted successfully");
+            } catch (Exception e) {
+                Log.e("CartRepository", "Error deleting item", e);
+            }
             return null;
         }
     }

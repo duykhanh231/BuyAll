@@ -1,6 +1,7 @@
 package com.group9.buyall;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public CartAdapter(List<CartItemModel> cartItemModelList) {
         this.cartItemModelList = cartItemModelList;
     }
+
+
 
     @Override
     public int getItemViewType(int position) {
@@ -114,7 +117,11 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
                     CartItemModel item = cartItemModelList.get(position);
-                    listener.onRemoveItem(convertToEntity(item));
+                    CartItemEntity entity = convertToEntity(item);
+                    if (entity != null) {
+                        Log.d("CartAdapter", "Removing item with ID: " + entity.getId());
+                        listener.onRemoveItem(entity);
+                    }
                 }
             });
 
