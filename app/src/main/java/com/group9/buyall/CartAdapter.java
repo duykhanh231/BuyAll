@@ -1,4 +1,6 @@
 package com.group9.buyall;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.group9.buyall.Database.CartItemEntity;
 
 import java.util.List;
 
@@ -20,14 +24,20 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        switch (cartItemModelList.get(position).getType()) {
-            case 0:
-                return CartItemModel.CART_ITEM;
-            case 1:
-                return CartItemModel.TOTAL_AMOUNT;
-            default:
-                return -1;
-        }
+        return cartItemModelList.get(position).getType();
+    }
+
+    public interface CartItemClickListener {
+        void onQuantityChange(CartItemEntity item, int newQuantity);
+        void onRemoveItem(CartItemEntity item);
+        void onCouponRedeem(CartItemEntity item);
+    }
+
+    private CartItemClickListener listener;
+
+    public CartAdapter(List<CartItemModel> cartItemModelList, CartItemClickListener listener) {
+        this.cartItemModelList = cartItemModelList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -47,28 +57,24 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        switch (cartItemModelList.get(position).getType()) {
-            case CartItemModel.CART_ITEM:
-                int resource = cartItemModelList.get(position).getProductImage();
-                String title = cartItemModelList.get(position).getProductTitle();
-                int freeCoupons = cartItemModelList.get(position).getFreeCoupons();
-                String productPrice = cartItemModelList.get(position).getProductPrice();
-                String cuttedPrice = cartItemModelList.get(position).getCuttedPrice();
-                int offersApplied = cartItemModelList.get(position).getOffersApplied();
-
-                ((CartItemViewholder) holder).setItemDetails(resource, title, freeCoupons, productPrice, cuttedPrice, offersApplied);
-                break;
-            case CartItemModel.TOTAL_AMOUNT:
-                String totalItems = cartItemModelList.get(position).getTotalItems();
-                String totalItemPrice = cartItemModelList.get(position).getTotalItemPrice();
-                String deliveryPrice = cartItemModelList.get(position).getDeliveryPrice();
-                String totalAmount = cartItemModelList.get(position).getTotalAmount();
-                String savedAmount = cartItemModelList.get(position).getSavedAmount();
-
-                ((CartTotalAmountViewholder) holder).setTotalAmount(totalItems, totalItemPrice, deliveryPrice, totalAmount, savedAmount);
-                break;
-            default:
-                return;
+        CartItemModel item = cartItemModelList.get(position);
+        if (holder instanceof CartItemViewholder) {
+            ((CartItemViewholder) holder).setItemDetails(
+                    item.getProductImage(),
+                    item.getProductTitle(),
+                    item.getFreeCoupons(),
+                    item.getProductPrice(),
+                    item.getCuttedPrice(),
+                    item.getOffersApplied()
+            );
+        } else if (holder instanceof CartTotalAmountViewholder) {
+            ((CartTotalAmountViewholder) holder).setTotalAmount(
+                    item.getTotalItems(),
+                    item.getTotalItemPrice(),
+                    item.getDeliveryPrice(),
+                    item.getTotalAmount(),
+                    item.getSavedAmount()
+            );
         }
     }
 
@@ -100,6 +106,55 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             offersApplied = itemView.findViewById(R.id.offers_applied);
             couponsApplied = itemView.findViewById(R.id.coupons_applied);
             productQuantity = itemView.findViewById(R.id.product_quantity);
+
+            productQuantity.setOnClickListener(v -> showQuantityDialog());
+
+            // Setup remove button
+            itemView.findViewById(R.id.remove_item_btn).setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    CartItemModel item = cartItemModelList.get(position);
+                    listener.onRemoveItem(convertToEntity(item));
+                }
+            });
+
+            itemView.findViewById(R.id.coupon_redemption_btn).setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    CartItemModel item = cartItemModelList.get(position);
+                    listener.onCouponRedeem(convertToEntity(item));
+                }
+            });
+        }
+
+        private void showQuantityDialog() {
+            Context context = itemView.getContext();
+            String[] quantities = new String[]{"1", "2", "3", "4", "5"};
+
+            new AlertDialog.Builder(context)
+                    .setTitle("Select Quantity")
+                    .setItems(quantities, (dialog, which) -> {
+                        int newQuantity = Integer.parseInt(quantities[which]);
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            CartItemModel item = cartItemModelList.get(position);
+                            listener.onQuantityChange(convertToEntity(item), newQuantity);
+                        }
+                    })
+                    .show();
+        }
+
+        private CartItemEntity convertToEntity(CartItemModel model) {
+            CartItemEntity entity = new CartItemEntity();
+            entity.setProductImage(model.getProductImage());
+            entity.setProductTitle(model.getProductTitle());
+            entity.setProductPrice(model.getProductPrice());
+            entity.setCuttedPrice(model.getCuttedPrice());
+            entity.setProductQuantity(model.getProductQuantity());
+            entity.setFreeCoupons(model.getFreeCoupons());
+            entity.setOffersApplied(model.getOffersApplied());
+            entity.setCouponsApplied(model.getCouponsApplied());
+            return entity;
         }
 
         private void setItemDetails(int resource, String title, int freeCouponsNo, String productPriceText, String cuttedPriceText, int offersAppliedNo) {

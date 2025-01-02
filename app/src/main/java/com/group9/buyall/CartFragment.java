@@ -1,97 +1,217 @@
 package com.group9.buyall;
 
-import android.content.Intent;
+import android.app.AlertDialog;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.group9.buyall.Database.CartItemEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CartFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CartFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView cartItemRecyclerView;
+    private CartAdapter cartAdapter;
+    private List<CartItemModel> cartItemModelList;
+    private CartViewModel cartViewModel;
 
     public CartFragment() {
         // Required empty public constructor
     }
 
-    private RecyclerView cartItemRecyclerView;
+    private void addItemToCart() {
+        CartItemEntity newItem = new CartItemEntity();
+        newItem.setProductImage(R.drawable.applewatch);
+        newItem.setProductTitle("New Product");
+        newItem.setFreeCoupons(1);
+        newItem.setProductPrice("100.00");
+        newItem.setCuttedPrice("150.00");
+        newItem.setProductQuantity(1);
+        newItem.setOffersApplied(2);
+        newItem.setCouponsApplied(1);
 
+        cartViewModel.insert(newItem);
+    }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CartFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CartFragment newInstance(String param1, String param2) {
-        CartFragment fragment = new CartFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    private void removeItem(CartItemEntity item) {
+        cartViewModel.delete(item);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
-
         cartItemRecyclerView = view.findViewById(R.id.cart_items_recyclerview);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        cartItemRecyclerView.setLayoutManager(layoutManager);
+        cartItemRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<CartItemModel> cartItemModelList = new ArrayList<>();
-        cartItemModelList.add(new CartItemModel(0,R.drawable.iphone16,"iPhone 128GB VN/A",2,"16.000.000 VND","32.000.000 VND",1,0,0));
-        cartItemModelList.add(new CartItemModel(0,R.drawable.applewatch,"Apple Watch Series 10",0,"11.799.000 VND","27.990.000 VND",1,1,0));
-        cartItemModelList.add(new CartItemModel(0,R.drawable.macbookpro,"MacBook Pro 13.3-inch Apple M1 Chip 8‑Core CPU",2,"28.990.000 VND","49.990.000 VND",1,0,0));
-        cartItemModelList.add(new CartItemModel(1,"Price (3 items)","109.980.000 VND","Free","56.789.000 VND","53.191.000 VND"));
-
-        CartAdapter cartAdapter = new CartAdapter(cartItemModelList);
+        cartItemModelList = new ArrayList<>();
+        cartAdapter = new CartAdapter(cartItemModelList);
         cartItemRecyclerView.setAdapter(cartAdapter);
-        cartAdapter.notifyDataSetChanged();
+
+        cartViewModel.getAllCartItems().observe(getViewLifecycleOwner(), cartItems -> {
+            cartItemModelList.clear();
+            for (CartItemEntity item : cartItems) {
+                cartItemModelList.add(new CartItemModel(
+                        CartItemModel.CART_ITEM,
+                        item.getProductImage(),
+                        item.getProductTitle(),
+                        item.getFreeCoupons(),
+                        item.getProductPrice(),
+                        item.getCuttedPrice(),
+                        item.getProductQuantity(),
+                        item.getOffersApplied(),
+                        item.getCouponsApplied()
+                ));
+            }
+            // Add total amount item if needed
+            // cartItemModelList.add(new CartItemModel(CartItemModel.TOTAL_AMOUNT, ...));
+            cartAdapter.notifyDataSetChanged();
+        });
 
         Button checkoutButton = view.findViewById(R.id.cart_checkout_btn);
-        checkoutButton.setOnClickListener(v -> {
-            // Navigate to the OrderHistory activity
-            Intent intent = new Intent(getActivity(), OrderHistoryActivity.class);
-            startActivity(intent);
-        });
+        checkoutButton.setOnClickListener(v -> checkout());
+
         return view;
+    }
+
+    // CartFragment.java - Implement checkout
+    private void checkout() {
+        if (cartItemModelList.isEmpty()) {
+            Toast.makeText(getContext(), "Your cart is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Calculate total amount
+        double totalAmount = 0;
+        for (CartItemModel item : cartItemModelList) {
+            if (item.getType() == CartItemModel.CART_ITEM) {
+                double price = Double.parseDouble(item.getProductPrice().replace(" VND", "").replace(",", ""));
+                totalAmount += price * item.getProductQuantity();
+            }
+        }
+
+        // Show confirmation dialog
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Confirm Purchase")
+                .setMessage("Total amount: " + formatPrice(totalAmount))
+                .setPositiveButton("Proceed to Payment", (dialog, which) -> {
+                    // Start payment activity or fragment
+                    // For example:
+                    // startActivity(new Intent(getContext(), PaymentActivity.class));
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    // CartFragment.java - Add these methods
+    private void setupCartItemFunctionality() {
+        cartAdapter = new CartAdapter(cartItemModelList, new CartAdapter.CartItemClickListener() {
+            @Override
+            public void onQuantityChange(CartItemEntity item, int newQuantity) {
+                item.setProductQuantity(newQuantity);
+                cartViewModel.update(item);
+                updateTotalAmount();
+            }
+
+            @Override
+            public void onRemoveItem(CartItemEntity item) {
+                cartViewModel.delete(item);
+                updateTotalAmount();
+            }
+
+            @Override
+            public void onCouponRedeem(CartItemEntity item) {
+                // Implement coupon redemption logic
+                // For example, show a dialog with available coupons
+                showCouponRedemptionDialog(item);
+            }
+        });
+    }
+
+    // CartFragment.java - Add helper methods
+    private void showCouponRedemptionDialog(CartItemEntity item) {
+        // Example implementation
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Available Coupons")
+                .setItems(new String[]{"10% OFF", "20% OFF", "Free Shipping"}, (dialog, which) -> {
+                    // Apply selected coupon
+                    applyCoupon(item, which);
+                })
+                .show();
+    }
+
+    private void applyCoupon(CartItemEntity item, int couponIndex) {
+        // Example coupon application logic
+        double price = Double.parseDouble(item.getProductPrice().replace(" VND", "").replace(",", ""));
+        double discount = 0;
+
+        switch (couponIndex) {
+            case 0: // 10% OFF
+                discount = price * 0.1;
+                break;
+            case 1: // 20% OFF
+                discount = price * 0.2;
+                break;
+            case 2: // Free Shipping
+                // Apply free shipping logic
+                break;
+        }
+
+        double newPrice = price - discount;
+        item.setProductPrice(formatPrice(newPrice));
+        item.setCouponsApplied(item.getCouponsApplied() + 1);
+        cartViewModel.update(item);
+    }
+
+    private void updateTotalAmount() {
+        double total = 0;
+        int itemCount = 0;
+        double savedAmount = 0;
+
+        for (CartItemModel item : cartItemModelList) {
+            if (item.getType() == CartItemModel.CART_ITEM) {
+                double price = Double.parseDouble(item.getProductPrice().replace(" VND", "").replace(",", ""));
+                double originalPrice = Double.parseDouble(item.getCuttedPrice().replace(" VND", "").replace(",", ""));
+                total += price * item.getProductQuantity();
+                savedAmount += (originalPrice - price) * item.getProductQuantity();
+                itemCount += item.getProductQuantity();
+            }
+        }
+
+        // Add total amount item at the end of the list
+        CartItemModel totalItem = new CartItemModel(
+                CartItemModel.TOTAL_AMOUNT,
+                itemCount + " items",
+                formatPrice(total),
+                "Free",
+                formatPrice(total),
+                formatPrice(savedAmount)
+        );
+
+        // Update the list
+        if (!cartItemModelList.isEmpty() &&
+                cartItemModelList.get(cartItemModelList.size() - 1).getType() == CartItemModel.TOTAL_AMOUNT) {
+            cartItemModelList.set(cartItemModelList.size() - 1, totalItem);
+        } else {
+            cartItemModelList.add(totalItem);
+        }
+
+        cartAdapter.notifyDataSetChanged();
+    }
+
+    private String formatPrice(double price) {
+        return String.format("%,.0f VND", price);
     }
 }

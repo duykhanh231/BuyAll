@@ -44,5 +44,9 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.flexbox)
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.glide)
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.room.runtime)
+    annotationProcessor (libs.room.compiler)
 }
