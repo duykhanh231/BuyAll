@@ -72,7 +72,6 @@
             android:layout_height="wrap_content"
             android:text="Add to cart"
             android:textSize="17sp"
-            android:layout_marginStart="8dp"
         />
 
     </LinearLayout>

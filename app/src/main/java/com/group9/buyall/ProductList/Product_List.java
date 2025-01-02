@@ -1,26 +1,58 @@
 package com.group9.buyall.ProductList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product_List {
-    private String productId;
+    private int productId;
     private String name;
     private double price;
     private double rating;
     private String shippingMethod;
-    private int imageUrl;
-    private String location;
+    private String imageUrl;
+    private String productType;
+    private String productGroup;
+    private int stock;
 
+    private static final List<Product_List> productListnow = new ArrayList<>();
 
-    public Product_List(String productId, String name, double price, double rating, String shippingMethod, int imageUrl, String location) {
+    public Product_List(int productId,String productType,String productGroup, String name, double price, double rating, String shippingMethod, String imageUrl, int stock) {
         this.productId = productId;
+        this.productType = productType;
+        this.productGroup = productGroup;
         this.name = name;
         this.price = price;
         this.rating = rating;
         this.shippingMethod = shippingMethod;
         this.imageUrl = imageUrl;
-        this.location = location; // Gán giá trị cho location
+        this.stock = stock;
     }
 
-    public String getProductId() {
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public String getProductGroup() {
+        return productGroup;
+    }
+
+    public void setProductGroup(String productGroup) {
+        this.productGroup = productGroup;
+    }
+
+    public int getProductId() {
         return productId;
     }
 
@@ -40,15 +72,11 @@ public class Product_List {
         return shippingMethod;
     }
 
-    public int getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
@@ -68,11 +96,8 @@ public class Product_List {
         this.shippingMethod = shippingMethod;
     }
 
-    public void setImageUrl(int imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
 }

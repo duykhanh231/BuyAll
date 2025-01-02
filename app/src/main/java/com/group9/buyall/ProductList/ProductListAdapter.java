@@ -3,6 +3,7 @@ package com.group9.buyall.ProductList;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -13,7 +14,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 
 import com.group9.buyall.ProductDetail.ProductDetail;
 import com.group9.buyall.R;
@@ -28,16 +36,18 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         this.context = context;
         this.productList = productList;
     }
+
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_product,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_product, parent, false);
         return new ProductViewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product_List productList = this.productList.get(position);
-        if (productList == null){
+        if (productList == null) {
             return;
         }
 
@@ -49,11 +59,27 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         SpannableString spannable = new SpannableString(formattedRate);
         spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#FFD700")), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        String formattedSHIPPINGMETHODANDLOCATION = String.format("%s %s | %s %s",
-                "\uD83D\uDE97", productList.getShippingMethod(),
-                "\uD83D\uDEA9", productList.getLocation());
+        String formattedSHIPPINGMETHODANDLOCATION = String.format("%s %s", "\uD83D\uDE97", productList.getShippingMethod());
 
-        holder.ivproduct.setImageResource(productList.getImageUrl());
+        holder.itemView.setVisibility(View.INVISIBLE);
+
+        Glide.with(context)
+                .load(productList.getImageUrl())
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        // Handle the error case
+                        return false; // Allow Glide to handle the error as well
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        holder.itemView.setVisibility(View.VISIBLE); // Show the item when image loading is successful
+                        return false; // Allow Glide to display the image
+                    }
+                })
+                .into(holder.ivproduct);
+
         holder.tvproductNAME.setText(productList.getName());
         holder.tvproductRATE.setText(spannable);
         holder.tvproductPRICE.setText(formattedPrice);
@@ -64,20 +90,20 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             intent.putExtra("PRODUCT_ID", productList.getProductId());
             context.startActivity(intent);
         });
-
     }
 
     @Override
     public int getItemCount() {
-        if (productList != null){
+        if (productList != null) {
             return productList.size();
         }
         return 0;
     }
 
-    class ProductViewHolder extends RecyclerView.ViewHolder{
-        private  ImageView ivproduct;
+    class ProductViewHolder extends RecyclerView.ViewHolder {
+        private ImageView ivproduct;
         private TextView tvproductNAME, tvproductPRICE, tvproductRATE, tvproductSHIPPINGMETHODANDLOCATION;
+
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             ivproduct = itemView.findViewById(R.id.product_image);

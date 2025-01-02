@@ -23,17 +23,6 @@
             android:textSize="18sp"
             android:textStyle="bold"/>
         <TextView
-            android:id="@+id/tvCOMMENTCOHINHANHVAVIDEO"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="With media"
-            android:background="#D3D3D3"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-        <TextView
             android:id="@+id/tvCOMMENTSAO"
             android:layout_width="0dp"
             android:layout_height="match_parent"

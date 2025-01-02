@@ -3,6 +3,7 @@ package com.group9.buyall;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -17,6 +18,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.group9.buyall.ProductList.ProductList;
 import com.group9.buyall.ProductList.ProductListAdapter;
 import com.group9.buyall.ProductList.Product_List;
@@ -64,13 +70,44 @@ public class HomePageActivity extends AppCompatActivity {
         profileText.setOnClickListener(profileClickListener);
         profileIcon.setOnClickListener(profileClickListener);
 
-        Product_List productList1 = new Product_List("1","RAM LAPTOP DDR4 8GB", 400000, 4.5, "Standard", R.drawable.ddr4, "HCMC" );
-        Product_List productList2 = new Product_List("2", "RAM LAPTOP DDR5 8GB", 560000, 4, "Instant", R.drawable.ddr5,"HCMC" );
-        Product_List productList3 = new Product_List("3", "RAM LAPTOP DDR3 8GB", 150000, 3, "Instant", R.drawable.ddr3,"Da Nang" );
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("ProductList");
 
-        productLists.add(productList1);
-        productLists.add(productList2);
-        productLists.add(productList3);
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+
+                    List<Product_List> productList = new ArrayList<>();
+
+                    for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
+
+                        int productID = productSnapshot.child("ProductID").getValue(int.class);
+                        String productName = productSnapshot.child("ProductName").getValue(String.class);
+                        String productGroup = productSnapshot.child("ProductGroup").getValue(String.class);
+                        String productImageURL = productSnapshot.child("ProductImageURL").getValue(String.class);
+                        String productType = productSnapshot.child("ProductType").getValue(String.class);
+                        Double productPrice = productSnapshot.child("ProductPrice").getValue(Double.class);
+                        Double productRating = productSnapshot.child("ProductRating").getValue(Double.class);
+                        int productStock = productSnapshot.child("Stock").getValue(int.class);
+
+                        String productShippingMethod = productSnapshot.child("ProductShippingMethod").getValue(String.class);
+
+                        Product_List product = new Product_List(
+                                productID, productType, productGroup, productName, productPrice, productRating, productShippingMethod, productImageURL,productStock);
+                        productList.add(product);
+                    }
+                    productLists.addAll(productList);
+                    productListAdapter.notifyDataSetChanged();
+                } else {
+                    Log.d("Firebase", "No products available.");
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Firebase", "Error retrieving data", databaseError.toException());
+            }
+        });
 
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -84,6 +121,7 @@ public class HomePageActivity extends AppCompatActivity {
                     Intent intent = new Intent(HomePageActivity.this, ProductList.class);
                     intent.putExtra("search_query", searchQuery); // Chuyển giá trị tìm kiếm qua Activity mới
                     startActivity(intent);
+
 
                     // Đóng bàn phím
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

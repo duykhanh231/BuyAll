@@ -9,6 +9,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -21,5 +23,13 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        new Thread(() -> {
+            Glide.get(this).clearDiskCache();
+        }).start();
+        Glide.get(this).clearMemory();
     }
 }

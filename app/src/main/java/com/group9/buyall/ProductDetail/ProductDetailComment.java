@@ -4,22 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDetailComment {
-    private String productId;
-    private String commentId;
-    private String userId;
+    private int productId;
+    private int commentId;
+    private int userId;
     private String userName;
-    private int userImageUrl;
+    private String userImageUrl;
     private String userComment;
-    private int productImage1;
-    private int productImage2;
+    private String productImage1;
+    private String productImage2;
     private float rating;
 
-    public static List<ProductDetailComment> commentsList = new ArrayList<>();
 
     // Constructor
-    public ProductDetailComment(String productId, String commentId, String userId, String userName,
-                                int userImageUrl, String userComment, int productImage1,
-                                int productImage2, float rating) {
+    public ProductDetailComment(int productId, int commentId, int userId, String userName,
+                                String userImageUrl, String userComment, String productImage1,
+                                String productImage2, float rating) {
         this.productId = productId;
         this.commentId = commentId;
         this.userId = userId;
@@ -32,27 +31,27 @@ public class ProductDetailComment {
     }
 
     // Getters và Setters cho từng thuộc tính
-    public String getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
-    public String getCommentId() {
+    public int getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(String commentId) {
+    public void setCommentId(int commentId) {
         this.commentId = commentId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -64,11 +63,11 @@ public class ProductDetailComment {
         this.userName = userName;
     }
 
-    public int getUserImageUrl() {
+    public String getUserImageUrl() {
         return userImageUrl;
     }
 
-    public void setUserImageUrl(int userImageUrl) {
+    public void setUserImageUrl(String userImageUrl) {
         this.userImageUrl = userImageUrl;
     }
 
@@ -80,19 +79,19 @@ public class ProductDetailComment {
         this.userComment = userComment;
     }
 
-    public int getProductImage1() {
+    public String getProductImage1() {
         return productImage1;
     }
 
-    public void setProductImage1(int productImage1) {
+    public void setProductImage1(String productImage1) {
         this.productImage1 = productImage1;
     }
 
-    public int getProductImage2() {
+    public String getProductImage2() {
         return productImage2;
     }
 
-    public void setProductImage2(int productImage2) {
+    public void setProductImage2(String productImage2) {
         this.productImage2 = productImage2;
     }
 

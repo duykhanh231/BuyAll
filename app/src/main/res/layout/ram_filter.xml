@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerlayoutscroll"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#D3D3D3" />
+    <ImageView
+        android:id="@+id/ivARROWTURNBACKALLFILTER"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/turnbackarrow"
+        android:layout_margin="5dp"/>
+    <TextView
+        android:id="@+id/Boloctimkiem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/headerlayoutscroll"
+        app:layout_constraintStart_toStartOf="@id/headerlayoutscroll"
+        android:text="Ram"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:layout_margin="5dp"
+        android:textSize="30sp" />
+    <LinearLayout
+        android:id="@+id/footerlayoutscroll"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"> <!-- Thêm thuộc tính này để xác định hướng -->
+
+        <Button
+            android:id="@+id/btnscrollXACLAPLAI"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:layout_margin="5dp"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/btnscrollXACNHAN"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Apply"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/headerlayoutscroll"
+        app:layout_constraintBottom_toTopOf="@id/footerlayoutscroll"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.8"
+                                                   >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/divider2"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dung lượng"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="25sp"
+                    android:textColor="#000000"
+                    android:layout_marginTop="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <!-- First Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="8GB"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilter8GB" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="16GB"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilter16GB" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="32GB"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilter32GB" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="64GB"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilter64GB" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/divider2"
+                    />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loại ram"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:layout_marginTop="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <!-- First Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="DDR5"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilterDDR5" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="DDR4"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilterDDR4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="DDR3"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilterDDR3" />
+                    <TextView
+                        android:visibility="invisible"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Standard"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                         />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/divider2"
+                />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="start">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hãng"
+                        android:textColor="#000000"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="25sp"
+                        android:layout_marginTop="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Samsung"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilterSAMSUNG" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Corsair"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilterCORSAIR" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Kingston"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilterKINGSTON" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Crucial"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilterCRUCIAL"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="G.Skill"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilterGSKILL" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ADATA"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilterADATA"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/divider2"
+                    />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hỗ trợ  "
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="25sp"
+                    android:layout_marginTop="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="SO-DIMM"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilterSODIMM" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="DIMM"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:id="@+id/tvfilterDIMM" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/divider2"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Khoảng giá"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="25sp"
+                    android:layout_marginTop="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:boxStrokeColor="#D3D3D3"
+                    app:boxBackgroundMode="outline">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:hint="Min"
+                    android:gravity="center"
+                    android:layout_margin="5dp"
+                    android:textSize="21sp"
+                    android:id="@+id/scrollpricerangeMIN"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/divider2"
+                    android:layout_weight="0.2"
+                    />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:boxStrokeColor="#D3D3D3"
+                app:boxBackgroundMode="outline">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_margin="5dp"
+                android:hint="Max"
+                android:gravity="center"
+                android:textSize="21sp"
+                android:id="@+id/scrollpricerangeMAX"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="0 - 100k"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollprice0to100k" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="100k - 200k"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollprice100kto200k" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/divider2"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đánh giá"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="25sp"
+                    android:layout_marginTop="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <!-- Cặp TextView đầu tiên -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="5 Stars"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollrate5STAR" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="> 4 Stars"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollrate4STAR" />
+                </LinearLayout>
+
+                <!-- Cặp TextView thứ 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="> 3 Stars"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollrate3STAR" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="> 2 Stars"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollrate2STAR" />
+                </LinearLayout>
+
+                <!-- Cặp TextView thứ 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="> 1 Star"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tvscrollrate1STAR" />
+                    <TextView
+                        android:visibility="invisible"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="> 1 Star"
+                        android:layout_margin="5dp"
+                        android:background="#D3D3D3"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/divider2"
+                />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <FrameLayout
+        android:id="@+id/flCHE"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone"
+        />
+<FrameLayout
+    android:id="@+id/flFullcomment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentBottom="true"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.group9.buyall.ProductDetail;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -14,70 +15,46 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.group9.buyall.CartFragment;
+import com.group9.buyall.ProductList.Product_List;
 import com.group9.buyall.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDetail extends AppCompatActivity {
-
     private RecyclerView rcvPRODUCTDETAIL;
+    private List<Product_All_Image> MyProduct_All_Image;
+    private List<Linked_Product> MyLinked_Product;
     private List<ProductDetailComment> MyListProductDetailComment;
-    private List<Product_Detail> MyProduct_Detail,ProductDetailStack;
-    private List<Product_Description> MyProduct_Description,ProductDescriptionStack;
+    private List<Product_List> MyProduct_List;
+    private List<Product_Description> MyProduct_Description;
     private ProductDetailAdapter productDetailAdapter;
     private ImageButton ibArrow,ibCart;
-
+    private String ss = "R1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_product_detail);
-        MyProduct_Detail = new ArrayList<>();
+        MyProduct_All_Image = new ArrayList<>();
+        MyLinked_Product = new ArrayList<>();
+        MyProduct_List = new ArrayList<>();
         MyProduct_Description = new ArrayList<>();
-        ProductDetailStack = new ArrayList<>();
-        ProductDescriptionStack = new ArrayList<>();
         MyListProductDetailComment = new ArrayList<>();
 
-        Product_Detail product_detail1 = new Product_Detail("1","Ram Laptop 8GB DDR4 3200MHz", 400000, "Standard","HCMC",(float) 4.5,R.drawable.ddr4);
-        Product_Detail product_detail2 = new Product_Detail("2","Ram Laptop 8GB DDR5 4800MHz", 560000, "Instant","HCMC",(float) 4,R.drawable.ddr5);
-        Product_Detail product_detail3 = new Product_Detail("3","Ram Laptop 8GB DDR3 1600MHz", 150000, "Standard","Da Nang",(float) 3,R.drawable.ddr3);
-
-        Product_Description product_description1 = new Product_Description("1","RAM DDR4 16GB 3200MHz là sự lựa chọn hoàn hảo cho những người dùng đòi hỏi hiệu suất cao trong các tác vụ nặng như gaming, chỉnh sửa video, và thiết kế đồ họa. Với tốc độ truyền tải dữ liệu nhanh hơn 50% so với DDR3, RAM DDR4 giúp hệ thống của bạn hoạt động mượt mà và tiết kiệm năng lượng hơn. Nâng cấp lên RAM DDR4 giúp bạn tối ưu hóa hiệu suất và trải nghiệm người dùng.");
-        Product_Description product_description2 = new Product_Description("2", "RAM DDR5 32GB 4800MHz đem lại hiệu suất vượt trội cho các hệ thống máy tính thế hệ mới. Với băng thông cao hơn và khả năng xử lý nhiều dữ liệu hơn, DDR5 giúp tăng tốc độ load game và cải thiện thời gian phản hồi trong các ứng dụng đòi hỏi tài nguyên lớn. Đây là sự lựa chọn tối ưu cho các game thủ chuyên nghiệp và các nhà phát triển nội dung, đảm bảo mọi tác vụ diễn ra một cách mượt mà và hiệu quả.");
-        Product_Description product_description3 = new Product_Description("3","RAM DDR3 8GB 1600MHz mang lại hiệu suất ổn định và nhanh chóng cho các hệ thống máy tính văn phòng và chơi game cơ bản. Với băng thông cao, RAM DDR3 hỗ trợ các tác vụ đa nhiệm mượt mà, giúp bạn dễ dàng chuyển đổi giữa các ứng dụng mà không gặp phải tình trạng giật lag. Đây là lựa chọn lý tưởng cho những ai muốn nâng cấp hiệu suất mà không tốn quá nhiều chi phí.");
-
-        ProductDetailComment productDetailComment1 = new ProductDetailComment("1","1","1" ,"User 1", R.drawable.user,"Sản phẩm rất tuyệt vời, không có gì để chê",R.drawable.ddr4_1,R.drawable.ddr4_2,5);
-        ProductDetailComment productDetailComment2 = new ProductDetailComment("1","2","2" ,"User 2", R.drawable.user,"Sản phẩm khá tốt, tối khá hài lòng",R.drawable.ddr4_2,0,4);
-        ProductDetailComment productDetailComment3 = new ProductDetailComment("2","3","3" ,"User 3", R.drawable.user,"Sản phẩm cũng tạm ổn, shop giao hàng chậm",R.drawable.ddr5_1,R.drawable.ddr5_2,3);
-        ProductDetailComment productDetailComment4 = new ProductDetailComment("2","4","4" ,"User 4", R.drawable.user,"Sản phẩm rất mạnh mẽ tôi rất thích, 2 thanh thừa sức chiến Wukong ",R.drawable.ddr5_3,R.drawable.ddr5_4,5);
-        ProductDetailComment productDetailComment5 = new ProductDetailComment("3","3","5" ,"User 5", R.drawable.user,"Sản phẩm cũng hoạt động ổn định, giao hàng sớm hơn dự kiến",R.drawable.ddr3_1,R.drawable.ddr3_2,5);
-        ProductDetailComment productDetailComment6 = new ProductDetailComment("3","4","6" ,"User 6", R.drawable.user,"Sản phẩm hoat động không ổn định lỗi màn hình xanh",R.drawable.ddr3_3,0,1);
-
-        ProductDetailStack.add(product_detail1);
-        ProductDetailStack.add(product_detail2);
-        ProductDetailStack.add(product_detail3);
-
-        ProductDescriptionStack.add(product_description1);
-        ProductDescriptionStack.add(product_description2);
-        ProductDescriptionStack.add(product_description3);
-
-        ProductDetailComment.commentsList.clear();
-        ProductDetailComment.commentsList.add(productDetailComment1);
-        ProductDetailComment.commentsList.add(productDetailComment2);
-        ProductDetailComment.commentsList.add(productDetailComment3);
-        ProductDetailComment.commentsList.add(productDetailComment4);
-        ProductDetailComment.commentsList.add(productDetailComment5);
-        ProductDetailComment.commentsList.add(productDetailComment6);
-
-        String productId = getIntent().getStringExtra("PRODUCT_ID");
+        int productId = getIntent().getIntExtra("PRODUCT_ID", 0);
 
         rcvPRODUCTDETAIL = findViewById(R.id.rcvPRODUCTDETAIL);
-        productDetailAdapter = new ProductDetailAdapter(MyProduct_Detail, MyListProductDetailComment, MyProduct_Description, this);
+        productDetailAdapter = new ProductDetailAdapter(MyProduct_All_Image,MyLinked_Product,MyProduct_List, MyListProductDetailComment, MyProduct_Description, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvPRODUCTDETAIL.setLayoutManager(linearLayoutManager);
-        rcvPRODUCTDETAIL.setAdapter(productDetailAdapter);
+
 
         ibCart = findViewById(R.id.cart);
         View.OnClickListener cartClickListener = v -> showCartFragment();
@@ -102,25 +79,174 @@ public class ProductDetail extends AppCompatActivity {
         });
 
 
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+
+        database.child("ProductAllImage").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    List<Product_All_Image> productAllImages = new ArrayList<>();
+
+                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                        int productID = userSnapshot.child("ProductID").getValue(Integer.class);
+                        boolean isMAIN = userSnapshot.child("IsMain").getValue(boolean.class);
+
+                        if (productID != productId) continue;
+
+                        int ImageID = userSnapshot.child("ImageID").getValue(Integer.class);
+                        String ProductImageURL = userSnapshot.child("ProductImageURL").getValue(String.class);
+
+                        Product_All_Image image = new Product_All_Image(ImageID, productID, ProductImageURL, isMAIN);
+
+                        if (isMAIN) {
+                            productAllImages.add(0, image);
+                        } else {
+                            productAllImages.add(image);
+                        }
+                    }
+
+                    MyProduct_All_Image.addAll(productAllImages);
+                } else {
+                    Log.d("Firebase", "ko có ProductAllImage khả thi.");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Firebase", "Lỗi truy xuất ProductAllImage", databaseError.toException());
+            }
+        });
+
+        database.child("ProductList").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    List<Product_List> productLists = new ArrayList<>();
+
+                    for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
+                        int productID = productSnapshot.child("ProductID").getValue(int.class);
+                        if (productID != productId) continue;
+                        String productName = productSnapshot.child("ProductName").getValue(String.class);
+                        String productGroup = productSnapshot.child("ProductGroup").getValue(String.class);
+                        String productImageURL = productSnapshot.child("ProductImageURL").getValue(String.class);
+                        String productType = productSnapshot.child("ProductType").getValue(String.class);
+                        Double productPrice = productSnapshot.child("ProductPrice").getValue(Double.class);
+                        Double productRating = productSnapshot.child("ProductRating").getValue(Double.class);
+                        String productShippingMethod = productSnapshot.child("ProductShippingMethod").getValue(String.class);
+                        int productStock = productSnapshot.child("Stock").getValue(int.class);
+                        Product_List product = new Product_List(
+                                productID, productType, productGroup, productName, productPrice, productRating, productShippingMethod, productImageURL,productStock);
+                        productLists.add(product);
+                        ss = productGroup;
+                    }
+                    MyProduct_List.addAll(productLists);
+                } else {
+                    Log.d("Firebase", "ko có ProductDescriptions khả thi.");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Firebase", "Lỗi truy xuất ProductDescription", databaseError.toException());
+            }
+        });
+
+        database.child("ProductLinked").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    List<Linked_Product> linkedProducts = new ArrayList<>();
+
+                    for (DataSnapshot linkedproductSnapshot : dataSnapshot.getChildren()) {
+                        String linkedID = linkedproductSnapshot.child("LinkedID").getValue(String.class);
+                        if (!linkedID.equals(ss)) continue;
+
+                        int productID = linkedproductSnapshot.child("ProductID").getValue(Integer.class);
+                        double ProductPrice = linkedproductSnapshot.child("ProductPrice").getValue(Double.class);
+                        String ProductFewInfo = linkedproductSnapshot.child("ProductFewInfo").getValue(String.class);
+
+                        Linked_Product linkedProduct = new Linked_Product(linkedID,productID,ProductFewInfo, ProductPrice);
+                        linkedProducts.add(linkedProduct);
+                    }
+                    MyLinked_Product.addAll(linkedProducts);
+                } else {
+                    Log.d("Firebase", "ko có ProductDescriptions khả thi.");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Firebase", "Lỗi truy xuất ProductDescription", databaseError.toException());
+            }
+        });
 
 
-        for (Product_Detail product_detail : ProductDetailStack){
-            if (product_detail.getProductId().equals(productId)){
-                MyProduct_Detail.add(product_detail);
-                break;
+
+
+        database.child("ProductComment").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    List<ProductDetailComment> productDetailCommentList = new ArrayList<>();
+                    int k=0;
+                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                        if (k>2){ break;}
+                        int productID = userSnapshot.child("ProductID").getValue(Integer.class);
+                        if (productID != productId) continue;
+                        int commentID = userSnapshot.child("CommentID").getValue(Integer.class);
+                        int userID = userSnapshot.child("UserID").getValue(Integer.class);
+                        String userName = userSnapshot.child("UserName").getValue(String.class);
+                        String userImageURL = userSnapshot.child("UserImageURL").getValue(String.class);
+                        String userComment = userSnapshot.child("UserComment").getValue(String.class);
+                        String productImage1 = userSnapshot.child("ProductImage1").getValue(String.class);
+                        String productImage2 = userSnapshot.child("ProductImage2").getValue(String.class);
+                        int userRating = userSnapshot.child("UserRating").getValue(Integer.class);
+
+                        ProductDetailComment comment = new ProductDetailComment(
+                                productID, commentID, userID, userName, userImageURL, userComment, productImage1, productImage2, userRating);
+                        productDetailCommentList.add(comment);
+                        k++;
+                    }
+                    MyListProductDetailComment.addAll(productDetailCommentList);
+                } else {
+                    Log.d("Firebase", "ko có ProductComments khả thi.");
+                }
+
+                database.child("ProductDescription").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            List<Product_Description> productDescriptions = new ArrayList<>();
+
+                            for (DataSnapshot descriptionSnapshot : dataSnapshot.getChildren()) {
+                                int productID = descriptionSnapshot.child("ProductID").getValue(Integer.class);
+                                if (productID != productId) continue;
+
+                                String description = descriptionSnapshot.child("ProductDescription").getValue(String.class);
+
+                                Product_Description descriptionObj = new Product_Description(productID, description);
+                                productDescriptions.add(descriptionObj);
+                                break;
+                            }
+
+                            MyProduct_Description.addAll(productDescriptions);
+                            rcvPRODUCTDETAIL.setAdapter(productDetailAdapter);
+                        } else {
+                            Log.d("Firebase", "ko có ProductDescriptions khả thi.");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e("Firebase", "Lỗi truy xuất ProductDescription", databaseError.toException());
+                    }
+                });
             }
-        }
-        for (ProductDetailComment productDetailComment : ProductDetailComment.commentsList) {
-            if (productDetailComment.getProductId().equals(productId)) {
-                MyListProductDetailComment.add(productDetailComment);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Firebase", "Lỗi truy xuất ProductComment", databaseError.toException());
             }
-        }
-        for (Product_Description product_description : ProductDescriptionStack) {
-            if (product_description.getProductId().equals(productId)) {
-                MyProduct_Description.add(product_description);
-                break;
-            }
-        }
+        });
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
