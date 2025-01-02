@@ -1,5 +1,6 @@
 package com.group9.buyall;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -7,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,6 +51,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         mainRow.setOnClickListener(v -> toggleSubItems(subItemsContainer, chevronIcon));
         chevronIcon.setOnClickListener(v -> toggleSubItems(subItemsContainer, chevronIcon));
+
+        // Ánh xạ nút Log out
+        LinearLayout logoutRow = findViewById(R.id.logout_row); // Giả sử bạn có một layout chứa TextView và ImageView cho Logout
+        logoutRow.setOnClickListener(v -> logoutAndRedirectToSignIn());
     }
 
     private void fetchUserData(String userId, TextView tvFullName, TextView tvPhone, TextView tvEmail) {
@@ -107,5 +111,15 @@ public class ProfileActivity extends AppCompatActivity {
             chevronIcon.setImageResource(R.drawable.chevrondown);
         }
         isSubItemsVisible = !isSubItemsVisible;
+    }
+
+    private void logoutAndRedirectToSignIn() {
+        // Đăng xuất người dùng Firebase
+        FirebaseAuth.getInstance().signOut();
+
+        // Chuyển hướng về trang đăng nhập (SignInActivity)
+        Intent intent = new Intent(ProfileActivity.this, SignIn.class);
+        startActivity(intent);
+        finish(); // Đảm bảo không thể quay lại ProfileActivity sau khi đăng xuất
     }
 }

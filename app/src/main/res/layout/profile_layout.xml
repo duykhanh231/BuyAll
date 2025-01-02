@@ -9,7 +9,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Tiêu đề -->
         <TextView
             android:id="@+id/tv_profile_title"
             android:layout_width="393dp"
@@ -20,7 +19,6 @@
             android:textSize="32sp"
             android:textStyle="bold" />
 
-        <!-- Section Profile -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +26,6 @@
             android:divider="@android:color/darker_gray"
             android:dividerHeight="1dp">
 
-            <!-- Profile Details -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +68,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- My Profile (Personal Information) -->
             <LinearLayout
                 android:id="@+id/main_row"
                 android:layout_width="match_parent"
@@ -87,14 +83,12 @@
                     android:text="My Profile"
                     android:textSize="16sp"
                     android:textColor="#000000" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Your personal information"
                     android:textSize="14sp"
                     android:textColor="#757575" />
-
                 <ImageView
                     android:id="@+id/chevron_icon"
                     android:layout_width="45dp"
@@ -104,7 +98,6 @@
                     android:src="@drawable/chevronright" />
             </LinearLayout>
 
-            <!-- Sub Items (Profile Details) -->
             <LinearLayout
                 android:id="@+id/sub_items_container"
                 android:layout_width="match_parent"
@@ -114,7 +107,6 @@
                 android:paddingTop="8dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp">
-                <!-- Fullname Section -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -142,7 +134,6 @@
                         android:src="@drawable/ic_edit" />
                 </LinearLayout>
 
-                <!-- Phone Section -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -169,7 +160,6 @@
                         android:src="@drawable/ic_edit" />
                 </LinearLayout>
 
-                <!-- Email Section -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -197,9 +187,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Các mục khác -->
-
-            <!-- My Orders -->
             <LinearLayout
                 android:id="@+id/my_orders_row"
                 android:layout_width="match_parent"
@@ -233,7 +220,6 @@
                     android:src="@drawable/chevronright" />
             </LinearLayout>
 
-            <!-- Sub Items (Orders) -->
             <LinearLayout
                 android:id="@+id/my_orders_sub_items"
                 android:layout_width="match_parent"
@@ -243,7 +229,6 @@
                 android:paddingTop="8dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp">
-                <!-- Example of an order -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -270,8 +255,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-
-            <!-- Shipping Addresses -->
             <LinearLayout
                 android:id="@+id/shipping_addresses_row"
                 android:layout_width="match_parent"
@@ -305,7 +288,6 @@
                     android:src="@drawable/chevronright" />
             </LinearLayout>
 
-            <!-- Sub Items (Shipping Addresses) -->
             <LinearLayout
                 android:id="@+id/shipping_addresses_sub_items"
                 android:layout_width="match_parent"
@@ -315,7 +297,6 @@
                 android:paddingTop="8dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp">
-                <!-- Example of an address -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -342,8 +323,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-
-            <!-- Payment Methods -->
             <LinearLayout
                 android:id="@+id/payment_methods_row"
                 android:layout_width="match_parent"
@@ -377,7 +356,6 @@
                     android:src="@drawable/chevronright" />
             </LinearLayout>
 
-            <!-- Sub Items (Payment Methods) -->
             <LinearLayout
                 android:id="@+id/payment_methods_sub_items"
                 android:layout_width="match_parent"
@@ -387,7 +365,6 @@
                 android:paddingTop="8dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp">
-                <!-- Example of a payment method -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -414,8 +391,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-
-            <!-- Discounts -->
             <LinearLayout
                 android:id="@+id/discounts_row"
                 android:layout_width="match_parent"
@@ -447,7 +422,6 @@
                     android:src="@drawable/chevronright" />
             </LinearLayout>
 
-            <!-- Sub Items (Discount) -->
             <LinearLayout
                 android:id="@+id/discounts_sub_items"
                 android:layout_width="match_parent"
@@ -459,7 +433,6 @@
                 android:paddingEnd="16dp">
             </LinearLayout>
 
-            <!-- My Reviews -->
             <LinearLayout
                 android:id="@+id/my_reviews_row"
                 android:layout_width="match_parent"
@@ -492,7 +465,6 @@
                     android:src="@drawable/chevronright" />
             </LinearLayout>
 
-            <!-- Sub Items (Reviews) -->
             <LinearLayout
                 android:id="@+id/my_reviews_sub_items"
                 android:layout_width="match_parent"
@@ -505,7 +477,6 @@
         </LinearLayout>
 
 
-        <!-- Settings -->
             <LinearLayout
                 android:id="@+id/settings_row"
                 android:layout_width="match_parent"
@@ -530,14 +501,13 @@
                     android:src="@drawable/chevronright" />
             </LinearLayout>
 
-            <!-- Khoảng cách ngăn cách phần Logout -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="#FFFFFF" />
 
-            <!-- Nút Logout -->
             <LinearLayout
+                android:id="@+id/logout_row"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -547,9 +517,6 @@
                 android:background="?attr/selectableItemBackground"
                 android:onClick="onLogoutClick">
 
-                <!-- Biểu tượng Logout -->
-
-                <!-- Chữ Logout -->
                 <TextView
                     android:id="@+id/tv_logout"
                     android:layout_width="wrap_content"
