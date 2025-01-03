@@ -156,6 +156,7 @@ public class ProductDetail extends AppCompatActivity {
                                 productID, productType, productGroup, productName, productPrice, productRating, productShippingMethod, productImageURL,productStock);
                         productLists.add(product);
                         ss = productGroup;
+                        break;
                     }
                     MyProduct_List.addAll(productLists);
                 } else {
