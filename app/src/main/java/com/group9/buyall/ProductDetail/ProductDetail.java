@@ -278,7 +278,7 @@ public class ProductDetail extends AppCompatActivity {
         CartItemEntity cartItem = new CartItemEntity();
 
         // Convert Product_List to CartItemEntity
-        cartItem.setProductImage(R.drawable.applewatch);
+        cartItem.setProductImage(R.drawable.vgaamdfilter);
         cartItem.setProductTitle(product.getName());
         cartItem.setProductPrice(String.format("%,.0f VND", product.getPrice()));
         cartItem.setCuttedPrice(String.format("%,.0f VND", product.getPrice() * 1.2)); // Example original price

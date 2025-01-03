@@ -37,12 +37,13 @@
             android:text="@string/track_order"/>
 
         <TextView
+            android:id="@+id/cancel_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cancel"
             android:textAllCaps="true"
             android:textColor="@color/ColorAccent"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
     </LinearLayout>
 
