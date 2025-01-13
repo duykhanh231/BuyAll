@@ -42,6 +42,11 @@ public class ProductDetail extends AppCompatActivity {
     private ProductDetailAdapter productDetailAdapter;
     private ImageButton ibArrow,ibCart;
     private String ss = "R1";
+    private boolean isProductAllImageLoaded = false;
+    private boolean isProductListLoaded = false;
+    private boolean isProductLinkedLoaded = false;
+    private boolean isProductCommentLoaded = false;
+    private boolean isProductDescriptionLoaded = false;
 
     private CartViewModel cartViewModel;
     @Override
@@ -122,8 +127,9 @@ public class ProductDetail extends AppCompatActivity {
                             productAllImages.add(image);
                         }
                     }
-
                     MyProduct_All_Image.addAll(productAllImages);
+                    isProductAllImageLoaded = true;
+                    checkDataLoaded();
                 } else {
                     Log.d("Firebase", "ko có ProductAllImage khả thi.");
                 }
@@ -159,6 +165,8 @@ public class ProductDetail extends AppCompatActivity {
                         break;
                     }
                     MyProduct_List.addAll(productLists);
+                    isProductListLoaded = true;
+                    checkDataLoaded();
                 } else {
                     Log.d("Firebase", "ko có ProductDescriptions khả thi.");
                 }
@@ -188,6 +196,8 @@ public class ProductDetail extends AppCompatActivity {
                         linkedProducts.add(linkedProduct);
                     }
                     MyLinked_Product.addAll(linkedProducts);
+                    isProductLinkedLoaded = true;
+                    checkDataLoaded();
                 } else {
                     Log.d("Firebase", "ko có ProductDescriptions khả thi.");
                 }
@@ -227,6 +237,8 @@ public class ProductDetail extends AppCompatActivity {
                         k++;
                     }
                     MyListProductDetailComment.addAll(productDetailCommentList);
+                    isProductCommentLoaded = true;
+                    checkDataLoaded();
                 } else {
                     Log.d("Firebase", "ko có ProductComments khả thi.");
                 }
@@ -249,7 +261,8 @@ public class ProductDetail extends AppCompatActivity {
                             }
 
                             MyProduct_Description.addAll(productDescriptions);
-                            rcvPRODUCTDETAIL.setAdapter(productDetailAdapter);
+                            isProductDescriptionLoaded = true;
+                            checkDataLoaded();
                         } else {
                             Log.d("Firebase", "ko có ProductDescriptions khả thi.");
                         }
@@ -305,5 +318,10 @@ public class ProductDetail extends AppCompatActivity {
         // Hiển thị `cart_fragment_container`
         FrameLayout cartFragmentContainer = findViewById(R.id.cart_fragment_container);
         cartFragmentContainer.setVisibility(View.VISIBLE);
+    }
+    private void checkDataLoaded() {
+        if (isProductAllImageLoaded && isProductListLoaded && isProductLinkedLoaded && isProductCommentLoaded && isProductDescriptionLoaded) {
+            rcvPRODUCTDETAIL.setAdapter(productDetailAdapter);
+        }
     }
 }
